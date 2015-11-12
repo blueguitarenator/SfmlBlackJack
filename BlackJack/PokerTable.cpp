@@ -6,19 +6,20 @@
 PokerTable::PokerTable(sf::RenderWindow* window)
 	:m_window(window)
 {
-	m_dealerCards.x = 350;
+	int centerOffset = 100;
+	m_dealerCards.x = 350 + centerOffset;
 	m_dealerCards.y = 100;
 	m_dealerCards.cards = nullptr;
 
-	m_p1Cards.x = 10;
+	m_p1Cards.x = 10 + centerOffset;
 	m_p1Cards.y = 500;
 	m_p1Cards.cards = nullptr;
 
-	m_p2Cards.x = 350;
+	m_p2Cards.x = 350 + centerOffset;
 	m_p2Cards.y = 500;
 	m_p2Cards.cards = nullptr;
 
-	m_p3Cards.x = 690;
+	m_p3Cards.x = 690 + centerOffset;
 	m_p3Cards.y = 500;
 	m_p3Cards.cards = nullptr;
 
@@ -71,7 +72,7 @@ void PokerTable::drawText()
 		throw "Font not found";
 	}
 	sf::Text text("Black Jack", m_titleFont, 100);
-	text.setPosition(10, 25);
+	text.setPosition(710, 25);
 	m_window->draw(text);
 }
 
