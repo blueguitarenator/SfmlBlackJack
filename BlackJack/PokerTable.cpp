@@ -3,8 +3,6 @@
 #include "Dealer.h"
 #include "Player.h"
 
-void drawPlayerCards(sf::RenderWindow* window, PokerTable::Spot& spot);
-
 PokerTable::PokerTable(sf::RenderWindow* window)
 	:m_window(window)
 {
@@ -38,42 +36,6 @@ PokerTable::PokerTable(sf::RenderWindow* window)
 
 PokerTable::~PokerTable()
 {
-}
-
-void PokerTable::setCard(const Card* card, Slot slot)
-{
-	/*if (slot == Slot::DealerHole)
-	{
-		m_dealerHoleCard.card = card;
-	}
-	else if (slot == Slot::DealerSpread)
-	{
-		m_dealerSpread.card = card;
-	}
-	else if (slot == Slot::P1_1)
-	{
-		m_p1Hole.card = card;
-	}
-	else if (slot == Slot::P1_2)
-	{
-		m_p1Spread.card = card;
-	}
-	else if (slot == Slot::P2_1)
-	{
-		m_p2Hole.card = card;
-	}
-	else if (slot == Slot::P2_2)
-	{
-		m_p2Spread.card = card;
-	}
-	else if (slot == Slot::P3_1)
-	{
-		m_p3Hole.card = card;
-	}
-	else if (slot == Slot::P3_2)
-	{
-		m_p3Spread.card = card;
-	}*/
 }
 
 void PokerTable::refresh(const Dealer* dealer, const Player* player1, const Player* player2, const Player* player3)
@@ -113,9 +75,9 @@ void PokerTable::drawText()
 	m_window->draw(text);
 }
 
-void drawPlayerCards(sf::RenderWindow* window, PokerTable::Spot &spot)
+void PokerTable::drawPlayerCards(sf::RenderWindow* window, PokerTable::Spot &spot)
 {
-	int offset = 0;
+	float offset = 0.0f;
 	for (auto c : *spot.cards)
 	{
 		if (c != nullptr)

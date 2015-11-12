@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Card.h"
 #include "Deck.h"
+#include "Shoe.h"
 #include "Dealer.h"
 #include "Player.h"
 #include <vector>
@@ -17,16 +18,13 @@ public:
 	void handleKeyPressed(sf::Event::KeyEvent keyEvent);
 private:
 	PokerTable* m_pokerTable;
-	Deck m_deck;
-	Card m_cards[52];
+	Shoe m_shoe;
+	Deck m_deck[6];
+	
 	Dealer m_dealer;
 	Player m_player1;
 	Player m_player2;
 	Player m_player3;
-
-	void initCards();
-	void doInit(Card::Rank rank, int offset);
-	void initDeck();
 
 };
 

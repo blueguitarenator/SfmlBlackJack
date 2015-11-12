@@ -3,10 +3,6 @@
 #include "Game.h"
 #include "PokerTable.h"
 
-#include "Player.h"
-
-using namespace std;
-
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1200, 800), "Black Jack");

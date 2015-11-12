@@ -9,26 +9,19 @@ class PokerTable
 {
 private:
 
-public:
 	struct Spot
 	{
-		int x;
-		int y;
+		float x;
+		float y;
 		sf::Texture texture;
 		sf::Sprite sprite;
 		const std::vector<const Card*>* cards;
 	};
-	enum Slot
-	{
-		DealerHole,
-		P1_1,
-		P2_1,
-		P3_1,
-	};
+
+public:
 	PokerTable(sf::RenderWindow* window);
 	~PokerTable();
 
-	void setCard(const Card* card, Slot slot);
 	void refresh(const Dealer* dealer, const Player* player1, const Player* player2, const Player* player3);
 
 private:
@@ -48,6 +41,7 @@ private:
 	void drawAll();
 	void drawText();
 	void drawChips(sf::RenderWindow* window);
+	void drawPlayerCards(sf::RenderWindow* window, PokerTable::Spot& spot);
 };
 
 
