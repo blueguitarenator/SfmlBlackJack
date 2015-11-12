@@ -1,0 +1,32 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+#include "Card.h"
+#include "Deck.h"
+#include "Dealer.h"
+#include "Player.h"
+#include <vector>
+
+class PokerTable;
+
+class Game
+{
+public:
+	Game(PokerTable* table);
+	~Game();
+
+	void handleKeyPressed(sf::Event::KeyEvent keyEvent);
+private:
+	PokerTable* m_pokerTable;
+	Deck m_deck;
+	Card m_cards[52];
+	Dealer m_dealer;
+	Player m_player1;
+	Player m_player2;
+	Player m_player3;
+
+	void initCards();
+	void doInit(Card::Rank rank, int offset);
+	void initDeck();
+
+};
+

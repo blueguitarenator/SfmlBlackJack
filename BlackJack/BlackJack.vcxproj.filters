@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="media">
+      <UniqueIdentifier>{135f3302-f00e-447e-a526-66f4e081171c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="media\images">
+      <UniqueIdentifier>{3c8a6101-5976-4ddd-a26a-2b47c6b3aeb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="media\fonts">
+      <UniqueIdentifier>{ce0c51b8-4f5a-4f6f-9337-07af5459d8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="media\images\cards">
+      <UniqueIdentifier>{cc3e15b3-fc75-4315-b56d-19a246f0e6ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PokerTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dealer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCards.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PokerTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dealer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="2_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="2_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="2_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="2_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="3_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="3_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="3_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="3_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="4_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="4_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="4_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="4_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="5_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="5_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="5_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="5_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="6_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="6_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="6_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="6_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="7_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="7_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="7_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="7_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="8_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="8_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="8_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="8_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="9_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="9_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="9_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="9_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="10_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="10_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="10_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="10_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="ace_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="ace_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="ace_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="ace_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="ace_of_spades2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_clubs2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_diamonds2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_hearts2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="jack_of_spades2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_clubs2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_diamonds2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_hearts2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="king_of_spades2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_clubs.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_clubs2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_diamonds.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_diamonds2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_hearts.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_hearts2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_spades.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="queen_of_spades2.png">
+      <Filter>media\images\cards</Filter>
+    </Image>
+    <Image Include="back.png">
+      <Filter>media\images</Filter>
+    </Image>
+    <Image Include="chips.png">
+      <Filter>media\images</Filter>
+    </Image>
+    <Image Include="felt.png">
+      <Filter>media\images</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Arcon-Regular.otf">
+      <Filter>media\fonts</Filter>
+    </Font>
+    <Font Include="riesling.ttf">
+      <Filter>media\fonts</Filter>
+    </Font>
+    <Font Include="Christmas Snow.ttf">
+      <Filter>media\fonts</Filter>
+    </Font>
+  </ItemGroup>
+</Project>
