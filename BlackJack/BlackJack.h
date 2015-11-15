@@ -30,6 +30,7 @@ namespace BlackJack
 		Stay,
 		Split,
 		Double,
+		Bust,
 		Unknown
 	};
 
@@ -42,5 +43,6 @@ namespace BlackJack
 		DealerHit,
 		Payout,
 		GameOver,
+		NextPlayer
 	};
 }

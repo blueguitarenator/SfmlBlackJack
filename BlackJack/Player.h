@@ -24,7 +24,7 @@ public:
 
 	// play
 	void setPlayChoice(BlackJack::Play play);
-	BlackJack::Play getPlayChoice();
+	BlackJack::Play getPlayChoice() const;
 
 	// money
 	int getBank() const { return 500; }

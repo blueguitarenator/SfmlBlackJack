@@ -17,6 +17,10 @@ Dealer::~Dealer()
 void Dealer::hit(Player* player)
 {
 	player->pushCard(m_shoe->draw());
+	if (isBust(player->getMyCards()))
+	{
+		player->setPlayChoice(Play::Bust);
+	}
 }
 
 const Card* Dealer::getShowCard() const
@@ -35,6 +39,10 @@ void Dealer::getMyCards(std::vector<const Card*>& cards, BlackJack::State state)
 	{
 		cards.push_back(&m_downCard);
 		cards.push_back(m_showCard);
+	}
+	else if (state == State::DealerHit)
+	{
+
 	}
 }
 
@@ -58,4 +66,10 @@ void Dealer::deal()
 	m_player1->pushCard(m_shoe->draw());
 	m_player2->pushCard(m_shoe->draw());
 	m_player3->pushCard(m_shoe->draw());
+}
+
+bool Dealer::isBust(const std::vector<const Card*>* cards)
+{
+	int value = m_cardCalculator.getCardValue(cards);
+	return value > 21;
 }

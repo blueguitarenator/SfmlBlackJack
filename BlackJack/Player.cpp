@@ -51,10 +51,14 @@ void Player::setPlayChoice(Play play)
 	{
 		m_bet *= 2;
 	}
+	else if (m_playChoice == Play::Bust)
+	{
+		m_bet = 0;
+	}
 
 }
 
-Play Player::getPlayChoice()
+Play Player::getPlayChoice() const
 {
 	return m_playChoice;
 }

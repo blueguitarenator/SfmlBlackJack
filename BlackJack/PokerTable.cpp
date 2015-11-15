@@ -31,12 +31,12 @@ void PokerTable::drawCards(State state)
 	drawDealerCards(state);
 }
 
-void PokerTable::drawTable(State state)
+void PokerTable::drawTable(State state, const Player* currentPlayer)
 {
 	m_window.draw(m_feltSprite);
-	m_playerGraphics1.drawBetCircle();
-	m_playerGraphics2.drawBetCircle();
-	m_playerGraphics3.drawBetCircle();
+	m_playerGraphics1.drawBetCircle(currentPlayer);
+	m_playerGraphics2.drawBetCircle(currentPlayer);
+	m_playerGraphics3.drawBetCircle(currentPlayer);
 	m_playerGraphics1.drawBet();
 	m_playerGraphics2.drawBet();
 	m_playerGraphics3.drawBet();

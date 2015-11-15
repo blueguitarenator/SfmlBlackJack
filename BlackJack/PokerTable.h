@@ -15,7 +15,7 @@ public:
 	PokerTable(sf::RenderWindow& window, const Player& p1, const Player& p2, const Player& p3, const Dealer& dealer);
 	~PokerTable();
 
-	void drawTable(BlackJack::State state);
+	void drawTable(BlackJack::State state, const Player* currentPlayer);
 	void drawCards(BlackJack::State state);
 	void display();
 private:

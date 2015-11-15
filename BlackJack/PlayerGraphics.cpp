@@ -1,7 +1,9 @@
 #include "PlayerGraphics.h"
 #include "Player.h"
 #include "Card.h"
+#include "BlackJack.h"
 
+using namespace BlackJack;
 using namespace std;
 
 PlayerGraphics::PlayerGraphics(sf::RenderWindow& window, const Player& player, float myOffset)
@@ -9,7 +11,7 @@ PlayerGraphics::PlayerGraphics(sf::RenderWindow& window, const Player& player, f
 {
 	m_betCircle.setRadius(50);
 	m_betCircle.setOutlineThickness(5);
-	m_betCircle.setOutlineColor(sf::Color(0, 0, 250));
+	m_betCircle.setOutlineColor(sf::Color::Blue);
 	m_betCircle.setFillColor(sf::Color::Transparent);
 	m_betCircle.setPosition(sf::Vector2f(250 + myOffset, 400));
 
@@ -50,8 +52,16 @@ void PlayerGraphics::drawCards()
 	}
 }
 
-void PlayerGraphics::drawBetCircle()
+void PlayerGraphics::drawBetCircle(const Player* currentPlayer)
 {
+	if (currentPlayer == &m_player)
+	{
+		m_betCircle.setOutlineColor(sf::Color::Yellow);
+	}
+	else
+	{
+		m_betCircle.setOutlineColor(sf::Color::Blue);
+	}
 	m_window.draw(m_betCircle);
 }
 
@@ -63,6 +73,13 @@ void PlayerGraphics::drawBank()
 
 void PlayerGraphics::drawBet()
 {
-	m_betText.setString("$" + to_string(m_player.getBet()));
+	if (m_player.getPlayChoice() == Play::Bust)
+	{
+		m_betText.setString("BUST");
+	}
+	else
+	{
+		m_betText.setString("$" + to_string(m_player.getBet()));
+	}
 	m_window.draw(m_betText);
 }

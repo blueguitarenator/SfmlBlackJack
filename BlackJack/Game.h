@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "PokerTable.h"
-#include "Card.h"
 #include "Deck.h"
 #include "Shoe.h"
 #include "Dealer.h"
@@ -17,13 +16,16 @@ public:
 	~Game();
 
 	void paint(BlackJack::State state);
-	bool placeBetsDone();
+	bool placeBetsRoundDone();
+	bool placeBetsPlayerDone();
 	void deal();
 	void setPlayerBet(int value);
-	bool playDone();
+	bool playForPlayerDone();
+	bool playForRoundDone();
 	bool playHit();
 	bool playDouble();
 	void setPlayerPlay(BlackJack::Play play);
+	void initFirstPlayer();
 private:
 	// attributes
 	PokerTable m_pokerTable;

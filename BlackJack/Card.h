@@ -4,7 +4,7 @@
 class Card
 {
 public:
-	enum Suit
+	enum class Suit
 	{
 		HEART,
 		DIAMOND,
@@ -33,10 +33,9 @@ public:
 	~Card();
 
 	void init(Rank value, Suit suit);
-	std::string cardToString() const;
 	void setCardGraphic(const std::string& cardGraphicFile);
 	std::string getCardGraphic() const;
-
+	int getRank() const { return m_rank; }
 private:
 	int m_rank;
 	Suit m_suit;

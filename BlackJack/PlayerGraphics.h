@@ -10,7 +10,7 @@ public:
 	PlayerGraphics(sf::RenderWindow& window, const Player& player, float myOffset);
 	~PlayerGraphics();
 
-	void drawBetCircle();
+	void drawBetCircle(const Player* currentPlayer);
 	void drawBank();
 	void drawBet();
 	void drawCards();

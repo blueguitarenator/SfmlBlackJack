@@ -28,9 +28,14 @@ Game::~Game()
 {
 }
 
+void Game::initFirstPlayer()
+{
+	m_currentPlayer = &m_player1;
+}
+
 void Game::paint(State state)
 {
-	m_pokerTable.drawTable(state);
+	m_pokerTable.drawTable(state, m_currentPlayer);
 	m_pokerTable.drawCards(state);
 	m_pokerTable.display();
 }
@@ -45,7 +50,10 @@ bool Game::playHit()
 	if (m_currentPlayer->getPlayChoice() == Play::Hit)
 	{
 		m_dealer.hit(m_currentPlayer);
-		m_currentPlayer->setPlayChoice(Play::Unknown);
+		if (m_currentPlayer->getPlayChoice() != Play::Bust)
+		{
+			m_currentPlayer->setPlayChoice(Play::Unknown);
+		}
 		return true;
 	}
 	return false;
@@ -62,42 +70,40 @@ bool Game::playDouble()
 	return false;
 }
 
-bool Game::playDone()
+bool Game::playForPlayerDone()
 {
-	if (m_currentPlayer == nullptr)
+	if (m_currentPlayer->getPlayChoice() == Play::Stay || m_currentPlayer->getPlayChoice() == Play::Bust)
 	{
-		m_currentPlayer = &m_player1;
-	}
-	else
-	{
-		if (m_currentPlayer->getPlayChoice() == Play::Stay)
-		{
-			m_currentPlayer = m_currentPlayer->getNextPlayer();
-			if (m_currentPlayer == nullptr)
-			{
-				return true;
-			}
-		}
+		m_currentPlayer = m_currentPlayer->getNextPlayer();
+		return true;
 	}
 	return false;
 }
 
-bool Game::placeBetsDone()
+bool Game::playForRoundDone()
 {
 	if (m_currentPlayer == nullptr)
 	{
-		m_currentPlayer = &m_player1;
+		return true;
 	}
-	else
+	return false;
+}
+
+bool Game::placeBetsPlayerDone()
+{
+	if (m_currentPlayer->makeBetDone())
 	{
-		if (m_currentPlayer->makeBetDone())
-		{
-			m_currentPlayer = m_currentPlayer->getNextPlayer();
-			if (m_currentPlayer == nullptr)
-			{
-				return true;
-			}
-		}
+		m_currentPlayer = m_currentPlayer->getNextPlayer();
+		return true;
+	}
+	return false;
+}
+
+bool Game::placeBetsRoundDone()
+{
+	if (m_currentPlayer == nullptr)
+	{
+		return true;
 	}
 	return false;
 }

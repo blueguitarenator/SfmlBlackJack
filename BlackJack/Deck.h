@@ -11,7 +11,6 @@ public:
 	void addCard(const Card* card);
 	void shuffle();
 	const Card* draw();
-	void deckToString() const;
 	const std::vector<const Card*>* getCards() const;
 
 private:

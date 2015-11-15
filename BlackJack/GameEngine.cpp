@@ -42,11 +42,16 @@ void GameEngine::handlePollEvent()
 	if (m_gameState == State::NewGame)
 	{
 		m_gameState = State::PlaceBets;
+		m_game.initFirstPlayer();
 		m_game.paint(m_gameState);
 	}
 	else if (m_gameState == State::PlaceBets)
 	{
-		if (m_game.placeBetsDone())
+		if (m_game.placeBetsPlayerDone())
+		{
+			m_game.paint(m_gameState);
+		}
+		if (m_game.placeBetsRoundDone())
 		{
 			m_gameState = State::Deal;
 			m_game.paint(m_gameState);
@@ -56,11 +61,16 @@ void GameEngine::handlePollEvent()
 	{
 		m_game.deal();
 		m_gameState = State::Play;
+		m_game.initFirstPlayer();
 		m_game.paint(m_gameState);
 	}
 	else if (m_gameState == State::Play)
 	{
-		if (m_game.playDone())
+		if (m_game.playForPlayerDone())
+		{
+			m_game.paint(m_gameState);
+		}
+		if (m_game.playForRoundDone())
 		{
 			m_gameState = State::DealerHit;
 			m_game.paint(m_gameState);

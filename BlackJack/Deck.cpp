@@ -50,20 +50,12 @@ const Card* Deck::draw()
 	return m_deck.at(m_top--);
 }
 
-void Deck::deckToString() const
-{
-	for (int i = 0; i < 52; i++)
-	{
-		cout << m_deck.at(i)->cardToString() << endl;
-	}
-}
-
 void Deck::doInit(Card::Rank rank, int offset)
 {
-	m_cards[offset++].init(rank, Card::HEART);
-	m_cards[offset++].init(rank, Card::DIAMOND);
-	m_cards[offset++].init(rank, Card::SPADE);
-	m_cards[offset++].init(rank, Card::CLUB);
+	m_cards[offset++].init(rank, Card::Suit::HEART);
+	m_cards[offset++].init(rank, Card::Suit::DIAMOND);
+	m_cards[offset++].init(rank, Card::Suit::SPADE);
+	m_cards[offset++].init(rank, Card::Suit::CLUB);
 }
 
 void Deck::initCards()
