@@ -17,24 +17,25 @@ public:
 
 	const std::vector<const Card*>* getMyCards() const;
 
+	// bet
 	bool makeBetDone();
 	int getBet() const { return m_bet; }
 	void addHumanBet(int value);
 
-	void makeHitChoice(const Card* dealerShowCard);
-	//BlackJack::HitChoice getHitChoice() const;
-	void setNoChoice();
-	void setStayChoice();
+	// play
+	void setPlayChoice(BlackJack::Play play);
+	BlackJack::Play getPlayChoice();
+
+	// money
 	int getBank() const { return 500; }
 	Player* getNextPlayer() { return m_nextPlayer; }
 private:
 	std::vector<const Card*> m_myCards;
-	bool m_isHuman;
 	int m_bet;
 	std::string m_name;
-	//BlackJack::HitChoice m_choice;
 	Player* m_nextPlayer;
 	bool m_betDone;
+	BlackJack::Play m_playChoice;
 
 };
 

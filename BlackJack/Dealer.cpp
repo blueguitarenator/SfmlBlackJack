@@ -1,6 +1,4 @@
 #include "Dealer.h"
-
-
 #include "Shoe.h"
 #include "Player.h"
 

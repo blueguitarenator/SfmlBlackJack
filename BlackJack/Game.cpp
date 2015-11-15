@@ -30,13 +30,56 @@ Game::~Game()
 
 void Game::paint(State state)
 {
-	//if (state == State::NewGame)
-	//{
-	//	m_pokerTable.drawTable();
-	//}
-	m_pokerTable.drawTable();
+	m_pokerTable.drawTable(state);
 	m_pokerTable.drawCards(state);
 	m_pokerTable.display();
+}
+
+void Game::setPlayerPlay(Play play)
+{
+	m_currentPlayer->setPlayChoice(play);
+}
+
+bool Game::playHit()
+{
+	if (m_currentPlayer->getPlayChoice() == Play::Hit)
+	{
+		m_dealer.hit(m_currentPlayer);
+		m_currentPlayer->setPlayChoice(Play::Unknown);
+		return true;
+	}
+	return false;
+}
+
+bool Game::playDouble()
+{
+	if (m_currentPlayer->getPlayChoice() == Play::Double)
+	{
+		m_dealer.hit(m_currentPlayer);
+		m_currentPlayer->setPlayChoice(Play::Stay);
+		return true;
+	}
+	return false;
+}
+
+bool Game::playDone()
+{
+	if (m_currentPlayer == nullptr)
+	{
+		m_currentPlayer = &m_player1;
+	}
+	else
+	{
+		if (m_currentPlayer->getPlayChoice() == Play::Stay)
+		{
+			m_currentPlayer = m_currentPlayer->getNextPlayer();
+			if (m_currentPlayer == nullptr)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool Game::placeBetsDone()
@@ -68,148 +111,4 @@ void Game::deal()
 {
 	m_dealer.deal();
 }
-
-//void Game::handlePollEvent()
-//{
-	//if (m_state == GameState::Bet)
-	//{
-	//	handleBets();
-	//}
-	//else if (m_state == GameState::Deal)
-	//{
-	//	m_dealer.deal();
-	//	changeState(GameState::Hits);
-	//}
-	//else if (m_state == GameState::Hits)
-	//{
-	//	handleHits();
-	//	changeState(GameState::Hitting);
-	//	refresh();
-	//}
-//}
-
-//void Game::handleKeyPressed(sf::Event::KeyEvent keyEvent)
-//{
-	/*if (keyEvent.code == sf::Keyboard::H)
-	{
-		hitPress();
-	}
-	else if (keyEvent.code == sf::Keyboard::S)
-	{
-		stayPress();
-	}*/
-//}
-
-//void Game::refresh()
-//{
-//	m_pokerTable->refresh(&m_dealer, &m_player1, &m_player2, &m_player3);// , m_state);
-//}
-
-//void Game::changeState(BlackJack::GameState state)
-//{
-//	m_state = state;
-//	cout << "New state: ";
-//	//printState(m_state);
-//	refresh();
-//}
-
-//void Game::stayPress()
-//{
-//	if (m_player1.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_player1.setStayChoice();
-//	}
-//	else if (m_player2.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_player2.setStayChoice();
-//	}
-//	else if (m_player3.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_player3.setStayChoice();
-//	}
-//}
-
-//void Game::hitPress()
-//{
-//	if (m_player1.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_dealer.hit(&m_player1);
-//		m_player1.setNoChoice();
-//	}
-//	else if (m_player2.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_dealer.hit(&m_player1);
-//		m_player2.setNoChoice();
-//	}
-//	else if (m_player3.getHitChoice() == HitChoice::MakingChoice)
-//	{
-//		m_dealer.hit(&m_player1);
-//		m_player3.setNoChoice();
-//	}
-//	else
-//	{
-//		changeState(GameState::DealerHit);
-//	}
-//}
-
-
-//void Game::handleHits()
-//{
-//	const Card* showCard = m_dealer.getShowCard();
-//	if (m_player1.getHitChoice() != HitChoice::Stay)
-//	{
-//		doHandleHit(m_player1, showCard);
-//	}
-//	else if (m_player2.getHitChoice() != HitChoice::Stay)
-//	{
-//		doHandleHit(m_player2, showCard);
-//	}
-//	else if (m_player3.getHitChoice() != HitChoice::Stay)
-//	{
-//		doHandleHit(m_player3, showCard);
-//	}
-//	else
-//	{
-//		changeState(GameState::DealerHit);
-//	}
-//}
-
-//void Game::doHandleHit(Player& player, const Card* showCard)
-//{
-//	if (player.getHitChoice() == HitChoice::NoChoice)
-//	{
-//		player.makeHitChoice(showCard);
-//	}
-//	else if (player.getHitChoice() == HitChoice::Hit)
-//	{
-//		m_dealer.hit(&m_player1);
-//		player.setNoChoice();
-//	}
-//	else
-//	{
-//		player.setStayChoice();
-//	}
-//}
-
-//void Game::handleBets()
-//{
-//	if (m_player1.getBet() == 0)
-//	{
-//		m_player1.makeBet();
-//	}
-//	else if (m_player2.getBet() == 0)
-//	{
-//		m_player2.makeBet();
-//	}
-//	else if (m_player3.getBet() == 0)
-//	{
-//		m_player3.makeBet();
-//	}
-//	else
-//	{
-//		changeState(GameState::Deal);
-//	}
-//}
-
-
 

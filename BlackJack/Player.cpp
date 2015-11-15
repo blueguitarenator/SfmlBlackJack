@@ -9,6 +9,7 @@ Player::Player(const std::string& name, Player* player)
 {
 	m_bet = 0;
 	m_betDone = false;
+	m_playChoice = Play::Unknown;
 }
 
 
@@ -43,27 +44,20 @@ bool Player::makeBetDone()
 	return false;
 }
 
-void Player::setNoChoice()
+void Player::setPlayChoice(Play play)
 {
-	//m_choice = HitChoice::NoChoice;
+	m_playChoice = play;
+	if (m_playChoice == Play::Double)
+	{
+		m_bet *= 2;
+	}
+
 }
 
-void Player::setStayChoice()
+Play Player::getPlayChoice()
 {
-	//m_choice = HitChoice::Stay;
+	return m_playChoice;
 }
-
-void Player::makeHitChoice(const Card* dealerShowCard)
-{
-	//cout << "Player: " << m_name << ". (H) Hit, (S) Stay" << endl;
-	//m_choice = HitChoice::MakingChoice;
-//	m_choice = BlackJack::Stay;
-}
-
-//BlackJack::HitChoice Player::getHitChoice() const
-//{
-//	return m_choice;
-//}
 
 void Player::clearCards()
 {

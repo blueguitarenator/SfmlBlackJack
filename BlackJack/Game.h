@@ -20,6 +20,10 @@ public:
 	bool placeBetsDone();
 	void deal();
 	void setPlayerBet(int value);
+	bool playDone();
+	bool playHit();
+	bool playDouble();
+	void setPlayerPlay(BlackJack::Play play);
 private:
 	// attributes
 	PokerTable m_pokerTable;
@@ -33,13 +37,5 @@ private:
 	Player* m_currentPlayer;
 
 	// operations
-	//void handleBets();
-	//void handleHits();
-	//void hitPress();
-	//void stayPress();
-	
-	//void refresh();
-	
-	//void doHandleHit(Player& player, const Card* showCard);
 };
 

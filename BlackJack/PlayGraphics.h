@@ -4,7 +4,17 @@
 class PlayGraphics
 {
 public:
-	PlayGraphics();
+	PlayGraphics(sf::RenderWindow& window);
 	~PlayGraphics();
+
+	void draw();
+private:
+	sf::RenderWindow& m_window;
+	sf::RectangleShape m_hitButton;
+
+	sf::Font m_buttonFont;
+	sf::Text m_buttonText;
+
+	void doDraw(sf::RectangleShape& button, const std::string& text, float x);
 };
 

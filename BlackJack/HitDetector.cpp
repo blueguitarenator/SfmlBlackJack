@@ -43,5 +43,21 @@ int HitDetector::hitChip(int x, int y) const
 
 Play HitDetector::hitPlay(int x, int y) const
 {
+	if (x > HIT_BUTTON_X && x < HIT_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
+	{
+		return Play::Hit;
+	}
+	else if (x > STAY_BUTTON_X && x < STAY_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
+	{
+		return Play::Stay;
+	}
+	else if (x > DOUBLE_BUTTON_X && x < DOUBLE_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
+	{
+		return Play::Double;
+	}
+
 	return Play::Unknown;
 }
