@@ -26,6 +26,7 @@ public:
 	bool playDouble();
 	void setPlayerPlay(BlackJack::Play play);
 	void initFirstPlayer();
+	bool dealerHitDone();
 private:
 	// attributes
 	PokerTable m_pokerTable;

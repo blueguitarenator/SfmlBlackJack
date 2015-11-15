@@ -11,6 +11,26 @@ CardCalculator::~CardCalculator()
 {
 }
 
+bool CardCalculator::isLessThanEqualToSoft17(const std::vector<const Card*>* cards) const
+{
+	int value = getCardValue(cards);
+	if (value < 17)
+	{
+		return true;
+	}
+	else if (value == 17)
+	{
+		for (auto c : *cards)
+		{
+			if (c->getRank() == 1)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 int CardCalculator::getCardValue(const std::vector<const Card*>* cards) const
 {
 	int value = 0;

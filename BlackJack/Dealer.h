@@ -18,11 +18,12 @@ public:
 	void getMyCards(std::vector<const Card*>& cards, BlackJack::State state) const;
 	const Card* getShowCard() const;
 	void hit(Player* player);
+	bool hitPastSoft17();
 private:
 	// attributes
 	std::vector<const Card*> m_myCards;
-	const Card* m_holeCard;
-	const Card* m_showCard;
+	//const Card* m_holeCard;
+	//const Card* m_showCard;
 	Card m_downCard;
 	CardCalculator m_cardCalculator;
 

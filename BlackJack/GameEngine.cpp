@@ -84,5 +84,13 @@ void GameEngine::handlePollEvent()
 			m_game.paint(m_gameState);
 		}
 	}
+	else if (m_gameState == State::DealerHit)
+	{
+		if (m_game.dealerHitDone())
+		{
+			m_gameState = State::Payout;
+		}
+		m_game.paint(m_gameState);
+	}
 
 }

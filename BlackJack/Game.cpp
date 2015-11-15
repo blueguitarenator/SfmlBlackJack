@@ -28,6 +28,11 @@ Game::~Game()
 {
 }
 
+bool Game::dealerHitDone()
+{
+	return m_dealer.hitPastSoft17();
+}
+
 void Game::initFirstPlayer()
 {
 	m_currentPlayer = &m_player1;

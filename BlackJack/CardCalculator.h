@@ -10,5 +10,6 @@ public:
 	~CardCalculator();
 
 	int getCardValue(const std::vector<const Card*>* cards) const;
+	bool isLessThanEqualToSoft17(const std::vector<const Card*>* cards) const;
 };
 
