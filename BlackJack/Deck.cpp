@@ -41,7 +41,7 @@ const std::vector<const Card*>* Deck::getCards() const
 
 void Deck::shuffle()
 {
-	auto engine = std::default_random_engine( time(0));
+	auto engine = std::default_random_engine(time(0));
 	std::shuffle(std::begin(m_deck), std::end(m_deck), engine);
 }
 

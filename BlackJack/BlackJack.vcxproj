@@ -125,21 +125,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="ChipGraphics.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="HitDetector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerGraphics.cpp" />
+    <ClCompile Include="PlayGraphics.cpp" />
     <ClCompile Include="PokerTable.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Shoe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlackJack.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="ChipGraphics.h" />
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="HitDetector.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerGraphics.h" />
+    <ClInclude Include="PlayGraphics.h" />
     <ClInclude Include="PokerTable.h" />
+    <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Shoe.h" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +200,7 @@
     <Image Include="back.png" />
     <Image Include="chips.png" />
     <Image Include="felt.png" />
+    <Image Include="hit.png" />
     <Image Include="jack_of_clubs2.png" />
     <Image Include="jack_of_diamonds.png" />
     <Image Include="jack_of_diamonds2.png" />
@@ -210,6 +224,7 @@
     <Image Include="queen_of_hearts2.png" />
     <Image Include="queen_of_spades.png" />
     <Image Include="queen_of_spades2.png" />
+    <Image Include="stay.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Arcon-Regular.otf" />
