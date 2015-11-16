@@ -78,7 +78,11 @@ bool Game::playDouble()
 	if (m_currentPlayer->getPlayChoice() == Play::Double)
 	{
 		m_dealer.hit(m_currentPlayer);
-		m_currentPlayer->setPlayChoice(Play::Stay);
+		if (m_currentPlayer->getPlayChoice() != Play::Bust)
+		{
+			m_currentPlayer->setPlayChoice(Play::Stay);
+		}
+		m_currentPlayer = m_currentPlayer->getNextPlayer();
 		return true;
 	}
 	return false;

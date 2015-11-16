@@ -28,24 +28,6 @@ GameState* GameStatePlay::click(int x, int y)
 
 GameState* GameStatePlay::run()
 {
-	//	if (m_game.playForPlayerDone())
-	//	{
-	//		m_game.paint(m_gameState);
-	//	}
-	//	if (m_game.playForRoundDone())
-	//	{
-	//		m_gameState = State::DealerHit;
-	//		m_game.paint(m_gameState);
-	//	}
-	//	else if (m_game.playHit())
-	//	{
-	//		m_game.paint(m_gameState);
-	//	}
-	//	else if (m_game.playDouble())
-	//	{
-	//		m_game.paint(m_gameState);
-	//	}
-
 	GameState* state = this;
 	if (m_game->playForPlayerDone())
 	{
