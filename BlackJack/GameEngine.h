@@ -6,6 +6,7 @@
 #include "GameStateNewGame.h"
 #include "GameStatePlaceBets.h"
 #include "GameStateDeal.h"
+#include "GameStateCheckBlackJack.h"
 #include "GameStatePlay.h"
 #include "GameStateDealerHit.h"
 #include "GameStatePayout.h"
@@ -28,6 +29,7 @@ private:
 	GameStateNewGame m_newGame;
 	GameStatePlaceBets m_placeBets;
 	GameStateDeal m_deal;
+	GameStateCheckBlackJack m_checkBlackJack;
 	GameStatePlay m_play;
 	GameStateDealerHit m_dealerHit;
 	GameStatePayout m_payout;

@@ -10,6 +10,7 @@ GameEngine::GameEngine(Game& game)
 	m_newGame(&game, game.getTable()),
 	m_placeBets(&game, game.getTable()),
 	m_deal(&game, game.getTable()),
+	m_checkBlackJack(&game, game.getTable()),
 	m_play(&game, game.getTable()),
 	m_dealerHit(&game, game.getTable()),
 	m_payout(&game, game.getTable()),
@@ -39,7 +40,9 @@ void GameEngine::buildGameState()
 {
 	m_newGame.setNextState(&m_placeBets);
 	m_placeBets.setNextState(&m_deal);
-	m_deal.setNextState(&m_play);
+	m_deal.setNextState(&m_checkBlackJack);
+	m_checkBlackJack.setNextState(&m_play);
+	m_checkBlackJack.setPayout(&m_payout);
 	m_play.setNextState(&m_dealerHit);
 	m_dealerHit.setNextState(&m_payout);
 	m_payout.setNextState(&m_gameOver);

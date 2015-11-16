@@ -15,9 +15,7 @@ GameStateDeal::~GameStateDeal()
 GameState* GameStateDeal::run()
 {
 	m_game->deal();
-	m_game->checkBlackJack();
 	m_game->paint(this);
-	m_game->initFirstPlayer();
 	return m_nextState->init();
 }
 

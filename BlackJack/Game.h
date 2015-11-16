@@ -23,7 +23,8 @@ public:
 	bool placeBetsRoundDone();
 	bool placeBetsPlayerDone();
 	void deal();
-	void checkBlackJack();
+	void checkPlayerBlackJack();
+	bool checkDealerBlackJack();
 	void setPlayerBet(int value);
 	bool playForPlayerDone();
 	bool playForRoundDone();

@@ -132,6 +132,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateCheckBlackJack.cpp" />
     <ClCompile Include="GameStateDeal.cpp" />
     <ClCompile Include="GameStateDealerHit.cpp" />
     <ClCompile Include="GameStateGameOver.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateCheckBlackJack.h" />
     <ClInclude Include="GameStateDeal.h" />
     <ClInclude Include="GameStateDealerHit.h" />
     <ClInclude Include="GameStateGameOver.h" />

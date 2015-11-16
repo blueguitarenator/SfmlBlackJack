@@ -106,6 +106,7 @@ void PokerTable::display()
 void PokerTable::drawDealerCards(GameState* state)
 {
 	vector<const Card*> cards;
+	//Dealer* dealer = const_cast<Dealer*>(&m_dealer);
 	m_dealer.getMyCards(cards, state);
 	float offset = 0.0f;
 	for (auto c : cards)

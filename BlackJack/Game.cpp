@@ -157,7 +157,12 @@ void doPayout(Player& p, Dealer& dealer)
 	}
 }
 
-void Game::checkBlackJack()
+bool Game::checkDealerBlackJack()
+{
+	return m_dealer.checkDealerBlackJack();
+}
+
+void Game::checkPlayerBlackJack()
 {
 	m_dealer.checkBlackJack(&m_player1);
 	m_dealer.checkBlackJack(&m_player2);

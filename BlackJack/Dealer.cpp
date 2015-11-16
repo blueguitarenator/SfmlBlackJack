@@ -21,6 +21,12 @@ void Dealer::gameOver()
 	m_myCards.clear();
 }
 
+bool Dealer::checkDealerBlackJack()
+{
+	int dealerValue = m_cardCalculator.getCardValue(&m_myCards);
+	return dealerValue == 21;
+}
+
 void Dealer::checkBlackJack(Player* player)
 {
 	int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
@@ -99,6 +105,15 @@ const Card* Dealer::getDownCard() const
 
 void Dealer::getMyCards(vector<const Card*>& cards, GameState* state) const
 {
+	//m_myCards.clear();
+	//Card* ace = new Card();
+	//Card* king = new Card();
+	//ace->init(Card::Rank::Ace, Card::Suit::CLUB);
+	//king->init(Card::Rank::King, Card::Suit::CLUB);
+	//ace->setCardGraphic("ace_of_clubs.png");
+	//king->setCardGraphic("king_of_clubs2.png");
+	//m_myCards.push_back(ace);
+	//m_myCards.push_back(king);
 	if (m_myCards.size() > 1)
 	{
 		state->getDealerCards(cards, this);

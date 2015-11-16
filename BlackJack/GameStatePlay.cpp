@@ -29,22 +29,21 @@ GameState* GameStatePlay::click(int x, int y)
 GameState* GameStatePlay::run()
 {
 	GameState* state = this;
-	if (m_game->playForPlayerDone())
-	{
-		m_game->paint(this);
-	}
+	m_game->playForPlayerDone();
 	if (m_game->playForRoundDone())
 	{
-		m_game->paint(this);
 		state = m_nextState->init();
 	}
-	else if (m_game->playHit())
+	else
 	{
-		m_game->paint(this);
-	}
-	else if (m_game->playDouble())
-	{
-		m_game->paint(this);
+		if (m_game->playHit())
+		{
+			m_game->paint(this);
+		}
+		else if (m_game->playDouble())
+		{
+			m_game->paint(this);
+		}
 	}
 	m_game->paint(this);
 	return state;
