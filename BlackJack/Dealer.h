@@ -14,16 +14,18 @@ public:
 	~Dealer();
 
 	void deal();
+	void checkBlackJack(Player* player);
 	void newGame();
 	void getMyCards(std::vector<const Card*>& cards, BlackJack::State state) const;
 	const Card* getShowCard() const;
 	void hit(Player* player);
 	bool hitPastSoft17();
+	void payout(Player* player, bool blackJack = false);
+	void gameOver();
 private:
 	// attributes
+	int m_bank;
 	std::vector<const Card*> m_myCards;
-	//const Card* m_holeCard;
-	//const Card* m_showCard;
 	Card m_downCard;
 	CardCalculator m_cardCalculator;
 

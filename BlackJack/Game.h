@@ -19,6 +19,7 @@ public:
 	bool placeBetsRoundDone();
 	bool placeBetsPlayerDone();
 	void deal();
+	void checkBlackJack();
 	void setPlayerBet(int value);
 	bool playForPlayerDone();
 	bool playForRoundDone();
@@ -27,6 +28,8 @@ public:
 	void setPlayerPlay(BlackJack::Play play);
 	void initFirstPlayer();
 	bool dealerHitDone();
+	void payout();
+	void roundOver();
 private:
 	// attributes
 	PokerTable m_pokerTable;

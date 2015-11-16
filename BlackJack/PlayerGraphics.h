@@ -13,6 +13,7 @@ public:
 	void drawBetCircle(const Player* currentPlayer);
 	void drawBank();
 	void drawBet();
+	void drawWin();
 	void drawCards();
 private:
 	float m_myOffset;
@@ -23,6 +24,7 @@ private:
 	sf::Font m_bankFont;
 	sf::Text m_bankText;
 	sf::Text m_betText;
+	sf::Text m_winText;
 	sf::Texture m_cardTexture;
 	sf::Sprite m_cardSprite;
 };

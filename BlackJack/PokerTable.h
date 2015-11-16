@@ -38,8 +38,12 @@ private:
 	sf::Texture m_dealerCardTexture;
 	sf::Sprite m_dealerCardSprite;
 
+	sf::RectangleShape m_continueButton;
+	sf::Text m_continueText;
+
 	// operations
 	void drawDealerCards(BlackJack::State state);
+	void drawContinueButton();
 
 };
 

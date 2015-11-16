@@ -6,13 +6,59 @@ using namespace BlackJack;
 using namespace std;
 
 Dealer::Dealer(Shoe* shoe, Player* p1, Player* p2, Player* p3)
-	:m_shoe(shoe), m_player1(p1), m_player2(p2), m_player3(p3)
+	:m_shoe(shoe), m_player1(p1), m_player2(p2), m_player3(p3), m_bank(0)
 {
 	m_downCard.setCardGraphic("back.png");
 }
 
 Dealer::~Dealer()
 {
+}
+
+void Dealer::gameOver()
+{
+	m_myCards.clear();
+}
+
+void Dealer::checkBlackJack(Player* player)
+{
+	int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
+	if (playerValue == 21)
+	{
+		payout(player, true);
+		player->setPlayChoice(Play::BlackJack);
+	}
+}
+
+void Dealer::payout(Player* player, bool blackJack)
+{
+	int bet = player->getBet();
+	if (blackJack)
+	{
+		float bj = bet * 1.5f;
+		m_bank -= bj;
+		player->setWinnings(bj);
+	}
+	else if (bet > 0)
+	{
+		int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
+		int dealerValue = m_cardCalculator.getCardValue(&m_myCards);
+	
+		if (dealerValue > 21 || playerValue > dealerValue)
+		{
+			m_bank -= bet;
+			player->setWinnings(bet);
+		}
+		else if (dealerValue == playerValue)
+		{
+			player->setWinnings(0.0f);
+		}
+		else
+		{
+			m_bank += bet;
+			player->setWinnings(-(bet));
+		}
+	}
 }
 
 bool Dealer::hitPastSoft17()
@@ -31,13 +77,13 @@ void Dealer::hit(Player* player)
 	player->pushCard(m_shoe->draw());
 	if (isBust(player->getMyCards()))
 	{
-		player->setPlayChoice(Play::Bust);
+		m_bank += player->busted();
 	}
 }
 
 const Card* Dealer::getShowCard() const
 {
-	return m_myCards.at(1);// m_showCard;
+	return m_myCards.at(1);
 }
 
 void Dealer::getMyCards(vector<const Card*>& cards, BlackJack::State state) const

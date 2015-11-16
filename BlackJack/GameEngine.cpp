@@ -35,6 +35,13 @@ void GameEngine::mouseClick(int x, int y)
 			m_game.paint(m_gameState);
 		}
 	}
+	else if (m_gameState == State::Payout)
+	{
+		if (m_hitDetector.hitContinue(x, y))
+		{
+			m_gameState = State::GameOver;
+		}
+	}
 }
 
 void GameEngine::handlePollEvent()
@@ -60,6 +67,12 @@ void GameEngine::handlePollEvent()
 	else if (m_gameState == State::Deal)
 	{
 		m_game.deal();
+		m_gameState = State::CheckForBlackJack;
+		m_game.paint(m_gameState);
+	}
+	else if (m_gameState == State::CheckForBlackJack)
+	{
+		m_game.checkBlackJack();
 		m_gameState = State::Play;
 		m_game.initFirstPlayer();
 		m_game.paint(m_gameState);
@@ -91,6 +104,17 @@ void GameEngine::handlePollEvent()
 			m_gameState = State::Payout;
 		}
 		m_game.paint(m_gameState);
+	}
+	else if (m_gameState == State::Payout)
+	{
+		m_game.payout();
+		m_game.paint(m_gameState);
+	}
+	else if (m_gameState == State::GameOver)
+	{
+		m_game.roundOver();
+		m_game.paint(m_gameState);
+		m_gameState = State::NewGame;
 	}
 
 }

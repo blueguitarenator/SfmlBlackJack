@@ -61,3 +61,13 @@ Play HitDetector::hitPlay(int x, int y) const
 
 	return Play::Unknown;
 }
+
+bool HitDetector::hitContinue(int x, int y) const
+{
+	if (x > HIT_BUTTON_X && x < HIT_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
+	{
+		return true;
+	}
+	return false;
+}

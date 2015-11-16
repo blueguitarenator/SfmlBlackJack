@@ -1,6 +1,8 @@
 #pragma once
 #include <limits>
 
+// black jack need to be excluded from payout
+// play state is running away after first round
 namespace BlackJack
 {
 	static const int DONE_BET = INT_MAX;
@@ -31,6 +33,7 @@ namespace BlackJack
 		Split,
 		Double,
 		Bust,
+		BlackJack,
 		Unknown
 	};
 
@@ -39,6 +42,7 @@ namespace BlackJack
 		NewGame,
 		PlaceBets,
 		Deal,
+		CheckForBlackJack,
 		Play,
 		DealerHit,
 		Payout,

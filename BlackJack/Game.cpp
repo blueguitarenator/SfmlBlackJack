@@ -7,6 +7,7 @@
 using namespace std;
 using namespace BlackJack;
 
+void doPayout(Player& p, Dealer& dealer);
 
 Game::Game(sf::RenderWindow& window)
 	:m_pokerTable(window, m_player1, m_player2, m_player3, m_dealer),
@@ -59,6 +60,10 @@ bool Game::playHit()
 		{
 			m_currentPlayer->setPlayChoice(Play::Unknown);
 		}
+		else
+		{
+			m_currentPlayer = m_currentPlayer->getNextPlayer();
+		}
 		return true;
 	}
 	return false;
@@ -77,7 +82,13 @@ bool Game::playDouble()
 
 bool Game::playForPlayerDone()
 {
-	if (m_currentPlayer->getPlayChoice() == Play::Stay || m_currentPlayer->getPlayChoice() == Play::Bust)
+	if (m_currentPlayer == nullptr)
+	{
+		return true;
+	}
+	if (m_currentPlayer->getPlayChoice() == Play::Stay || 
+		m_currentPlayer->getPlayChoice() == Play::Bust || 
+		m_currentPlayer->getPlayChoice() == Play::BlackJack)
 	{
 		m_currentPlayer = m_currentPlayer->getNextPlayer();
 		return true;
@@ -123,3 +134,33 @@ void Game::deal()
 	m_dealer.deal();
 }
 
+void Game::payout()
+{
+	doPayout(m_player1, m_dealer);
+	doPayout(m_player2, m_dealer);
+	doPayout(m_player3, m_dealer);
+}
+
+void doPayout(Player& p, Dealer& dealer)
+{
+	if (p.getPlayChoice() != Play::BlackJack && p.getPlayChoice() != Play::Bust)
+	{
+		dealer.payout(&p);
+	}
+}
+
+void Game::checkBlackJack()
+{
+	m_dealer.checkBlackJack(&m_player1);
+	m_dealer.checkBlackJack(&m_player2);
+	m_dealer.checkBlackJack(&m_player3);
+}
+
+void Game::roundOver()
+{
+	m_dealer.gameOver();
+	m_player1.gameOver();
+	m_player2.gameOver();
+	m_player3.gameOver();
+	m_currentPlayer = nullptr;
+}

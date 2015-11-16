@@ -7,7 +7,6 @@ using namespace BlackJack;
 Player::Player(const std::string& name, Player* player)
 	:m_name(name), m_nextPlayer(player)
 {
-	m_bet = 0;
 	m_betDone = false;
 	m_playChoice = Play::Unknown;
 }
@@ -15,6 +14,16 @@ Player::Player(const std::string& name, Player* player)
 
 Player::~Player()
 {
+}
+
+int Player::getBet() const
+{
+	return m_bank.getBet();
+}
+
+int Player::getBank() const
+{
+	return m_bank.getBank();
 }
 
 void Player::addHumanBet(int value)
@@ -25,7 +34,8 @@ void Player::addHumanBet(int value)
 	}
 	else
 	{
-		m_bet += value;
+		//m_bet += value;
+		m_bank.incrementBet(value);
 	}
 }
 
@@ -49,13 +59,14 @@ void Player::setPlayChoice(Play play)
 	m_playChoice = play;
 	if (m_playChoice == Play::Double)
 	{
-		m_bet *= 2;
+		m_bank.incrementBet(m_bank.getBet());
 	}
-	else if (m_playChoice == Play::Bust)
-	{
-		m_bet = 0;
-	}
+}
 
+int Player::busted()
+{
+	m_playChoice = Play::Bust;
+	return m_bank.busted();
 }
 
 Play Player::getPlayChoice() const
@@ -71,4 +82,21 @@ void Player::clearCards()
 const std::vector<const Card*>* Player::getMyCards() const
 {
 	return &m_myCards;
+}
+
+void Player::setWinnings(float value)
+{
+	m_bank.setWinnings(value);
+}
+
+float Player::getWinnings() const
+{
+	return m_bank.getWinnings();
+}
+
+void Player::gameOver()
+{
+	m_myCards.clear();
+	m_bank.gameOver();
+	m_playChoice = Play::Unknown;
 }

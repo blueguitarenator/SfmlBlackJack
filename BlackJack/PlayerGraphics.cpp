@@ -23,6 +23,11 @@ PlayerGraphics::PlayerGraphics(sf::RenderWindow& window, const Player& player, f
 	m_betText.setPosition(sf::Vector2f(275 + myOffset, 425));
 	m_betText.setFont(m_bankFont);
 	m_betText.setCharacterSize(20);
+
+	m_winText.setColor(sf::Color::Green);
+	m_winText.setPosition(sf::Vector2f(275 + myOffset, 440));
+	m_winText.setFont(m_bankFont);
+	m_winText.setCharacterSize(20);
 }
 
 
@@ -81,5 +86,15 @@ void PlayerGraphics::drawBet()
 	{
 		m_betText.setString("$" + to_string(m_player.getBet()));
 	}
+	if (m_player.getPlayChoice() == Play::BlackJack)
+	{
+		drawWin();
+	}
 	m_window.draw(m_betText);
+}
+
+void PlayerGraphics::drawWin()
+{
+	m_winText.setString("$" + to_string(m_player.getWinnings()));
+	m_window.draw(m_winText);
 }

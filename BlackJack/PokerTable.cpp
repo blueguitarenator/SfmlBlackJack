@@ -17,6 +17,7 @@ PokerTable::PokerTable(sf::RenderWindow& window, const Player& p1, const Player&
 {
 	m_resourceLoader.loadTexture(m_feltTexture, ResourceLoader::FELT);
 	m_feltSprite.setTexture(m_feltTexture);
+	m_resourceLoader.loadFont(m_titleFont, ResourceLoader::ARCON_FONT);
 }
 
 PokerTable::~PokerTable()
@@ -47,12 +48,36 @@ void PokerTable::drawTable(State state, const Player* currentPlayer)
 	{
 		m_chipGraphics.draw();
 	}
-	if (state == State::Play)
+	else if (state == State::Play)
 	{
 		m_playGraphics.draw();
 	}
+	else if (state == State::Payout)
+	{
+		m_playerGraphics1.drawWin();
+		m_playerGraphics2.drawWin();
+		m_playerGraphics3.drawWin();
+		drawContinueButton();
+	}
+
 }
 
+void PokerTable::drawContinueButton()
+{
+	m_continueButton.setPosition(sf::Vector2f(HIT_BUTTON_X, BUTTON_Y));
+	m_continueButton.setSize(sf::Vector2f(BUTTON_WIDTH, BUTTON_HEIGHT));
+	m_continueButton.setOutlineColor(sf::Color::Black);
+	m_continueButton.setFillColor(sf::Color::Transparent);
+	m_continueButton.setOutlineThickness(5);
+
+	m_continueText.setFont(m_titleFont);
+	m_continueText.setCharacterSize(20);
+	m_continueText.setPosition(sf::Vector2f(HIT_BUTTON_X + 10, BUTTON_Y));
+	m_continueText.setString("Continue?");
+	m_window.draw(m_continueButton);
+	m_window.draw(m_continueText);
+
+}
 void PokerTable::display()
 {
 	m_window.display();
