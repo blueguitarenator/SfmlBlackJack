@@ -8,7 +8,6 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1400, 1000), "Black Jack");
 	window.setFramerateLimit(60);
-	//PokerTable pokerTable(window);
 	
 	Game game(window);
 	GameEngine engine(game);
@@ -27,16 +26,10 @@ int main()
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
 					engine.mouseClick(event.mouseButton.x, event.mouseButton.y);
-					//std::cout << "the right button was pressed" << std::endl;
-					//std::cout << "mouse x: " << event.mouseButton.x << std::endl;
-					//std::cout << "mouse y: " << event.mouseButton.y << std::endl;
 				}
 			}
-			else
-			{
-				engine.handlePollEvent();
-			}
 		}
+		engine.handlePollEvent();
 	}
 
 	return 0;
