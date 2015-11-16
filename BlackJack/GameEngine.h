@@ -3,7 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "HitDetector.h"
-#include "BlackJack.h"
+#include "GameStateNewGame.h"
+#include "GameStatePlaceBets.h"
+#include "GameStateDeal.h"
+#include "GameStatePlay.h"
+#include "GameStateDealerHit.h"
+#include "GameStatePayout.h"
+#include "GameStateGameOver.h"
 
 class GameEngine
 {
@@ -16,10 +22,18 @@ public:
 private:
 	// attributes
 	Game& m_game;
-	BlackJack::State m_gameState;
+	GameState* m_state;
 	HitDetector m_hitDetector;
+	
+	GameStateNewGame m_newGame;
+	GameStatePlaceBets m_placeBets;
+	GameStateDeal m_deal;
+	GameStatePlay m_play;
+	GameStateDealerHit m_dealerHit;
+	GameStatePayout m_payout;
+	GameStateGameOver m_gameOver;
 
 	//operations
-
+	void buildGameState();
 };
 

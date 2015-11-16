@@ -6,6 +6,7 @@
 
 class Shoe;
 class Player;
+class GameState;
 
 class Dealer
 {
@@ -13,15 +14,17 @@ public:
 	Dealer(Shoe* shoe, Player* p1, Player* p2, Player* p3);
 	~Dealer();
 
+	const std::vector<const Card*>* getCards() const;
 	void deal();
 	void checkBlackJack(Player* player);
 	void newGame();
-	void getMyCards(std::vector<const Card*>& cards, BlackJack::State state) const;
+	void getMyCards(std::vector<const Card*>& cards, GameState* state) const;
 	const Card* getShowCard() const;
 	void hit(Player* player);
 	bool hitPastSoft17();
 	void payout(Player* player, bool blackJack = false);
 	void gameOver();
+	const Card* getDownCard() const;
 private:
 	// attributes
 	int m_bank;

@@ -1,6 +1,7 @@
 #include "Dealer.h"
 #include "Shoe.h"
 #include "Player.h"
+#include "GameState.h"
 
 using namespace BlackJack;
 using namespace std;
@@ -86,22 +87,21 @@ const Card* Dealer::getShowCard() const
 	return m_myCards.at(1);
 }
 
-void Dealer::getMyCards(vector<const Card*>& cards, BlackJack::State state) const
+const vector<const Card*>* Dealer::getCards() const
+{
+	return &m_myCards;
+}
+
+const Card* Dealer::getDownCard() const
+{
+	return &m_downCard;
+}
+
+void Dealer::getMyCards(vector<const Card*>& cards, GameState* state) const
 {
 	if (m_myCards.size() > 1)
 	{
-		if (state == State::Deal || state == State::Play)
-		{
-			cards.push_back(&m_downCard);
-			cards.push_back(m_myCards.at(1));
-		}
-		else
-		{
-			for (auto c : m_myCards)
-			{
-				cards.push_back(c);
-			}
-		}
+		state->getDealerCards(cards, this);
 	}
 }
 

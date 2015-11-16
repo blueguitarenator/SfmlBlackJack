@@ -6,7 +6,11 @@
 #include "Dealer.h"
 #include "Player.h"
 #include "BlackJack.h"
+#include "PokerTable.h"
+
 #include <vector>
+
+class GameState;
 
 class Game
 {
@@ -15,7 +19,7 @@ public:
 	Game(sf::RenderWindow& window);
 	~Game();
 
-	void paint(BlackJack::State state);
+	void paint(GameState* state);
 	bool placeBetsRoundDone();
 	bool placeBetsPlayerDone();
 	void deal();
@@ -30,6 +34,7 @@ public:
 	bool dealerHitDone();
 	void payout();
 	void roundOver();
+	PokerTable* getTable();
 private:
 	// attributes
 	PokerTable m_pokerTable;

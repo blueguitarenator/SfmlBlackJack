@@ -8,6 +8,7 @@
 
 class Dealer;
 class Player;
+class GameState;
 
 class PokerTable
 {	
@@ -15,8 +16,11 @@ public:
 	PokerTable(sf::RenderWindow& window, const Player& p1, const Player& p2, const Player& p3, const Dealer& dealer);
 	~PokerTable();
 
-	void drawTable(BlackJack::State state, const Player* currentPlayer);
-	void drawCards(BlackJack::State state);
+	void drawTable(GameState* state, const Player* currentPlayer);
+	void drawCards(GameState* state);
+	void drawChips();
+	void drawPlay();
+	void drawPayout();
 	void display();
 private:
 	// attributes
@@ -42,7 +46,7 @@ private:
 	sf::Text m_continueText;
 
 	// operations
-	void drawDealerCards(BlackJack::State state);
+	void drawDealerCards(GameState* state);
 	void drawContinueButton();
 
 };

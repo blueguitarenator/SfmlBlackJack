@@ -1,13 +1,22 @@
 #include "GameEngine.h"
+#include "GameState.h"
 #include <iostream>
 
 using namespace std;
 using namespace BlackJack;
 
 GameEngine::GameEngine(Game& game)
-	:m_game(game)
+	:m_game(game), 
+	m_newGame(&game, game.getTable()),
+	m_placeBets(&game, game.getTable()),
+	m_deal(&game, game.getTable()),
+	m_play(&game, game.getTable()),
+	m_dealerHit(&game, game.getTable()),
+	m_payout(&game, game.getTable()),
+	m_gameOver(&game, game.getTable())
 {
-	m_gameState = State::NewGame;
+	buildGameState();
+	m_state = &m_newGame;
 }
 
 
@@ -17,104 +26,22 @@ GameEngine::~GameEngine()
 
 void GameEngine::mouseClick(int x, int y)
 {
-	if (m_gameState == State::PlaceBets)
-	{
-		int value = m_hitDetector.hitChip(x, y);
-		if (value != -1)
-		{
-			m_game.setPlayerBet(value);
-			m_game.paint(m_gameState);
-		}
-	}
-	else if (m_gameState == State::Play)
-	{
-		Play p = m_hitDetector.hitPlay(x, y);
-		if (p != Play::Unknown)
-		{
-			m_game.setPlayerPlay(p);
-			m_game.paint(m_gameState);
-		}
-	}
-	else if (m_gameState == State::Payout)
-	{
-		if (m_hitDetector.hitContinue(x, y))
-		{
-			m_gameState = State::GameOver;
-		}
-	}
+	m_state = m_state->click(x, y);
+
 }
 
 void GameEngine::handlePollEvent()
 {
-	if (m_gameState == State::NewGame)
-	{
-		m_gameState = State::PlaceBets;
-		m_game.initFirstPlayer();
-		m_game.paint(m_gameState);
-	}
-	else if (m_gameState == State::PlaceBets)
-	{
-		if (m_game.placeBetsPlayerDone())
-		{
-			m_game.paint(m_gameState);
-		}
-		if (m_game.placeBetsRoundDone())
-		{
-			m_gameState = State::Deal;
-			m_game.paint(m_gameState);
-		}
-	}
-	else if (m_gameState == State::Deal)
-	{
-		m_game.deal();
-		m_gameState = State::CheckForBlackJack;
-		m_game.paint(m_gameState);
-	}
-	else if (m_gameState == State::CheckForBlackJack)
-	{
-		m_game.checkBlackJack();
-		m_gameState = State::Play;
-		m_game.initFirstPlayer();
-		m_game.paint(m_gameState);
-	}
-	else if (m_gameState == State::Play)
-	{
-		if (m_game.playForPlayerDone())
-		{
-			m_game.paint(m_gameState);
-		}
-		if (m_game.playForRoundDone())
-		{
-			m_gameState = State::DealerHit;
-			m_game.paint(m_gameState);
-		}
-		else if (m_game.playHit())
-		{
-			m_game.paint(m_gameState);
-		}
-		else if (m_game.playDouble())
-		{
-			m_game.paint(m_gameState);
-		}
-	}
-	else if (m_gameState == State::DealerHit)
-	{
-		if (m_game.dealerHitDone())
-		{
-			m_gameState = State::Payout;
-		}
-		m_game.paint(m_gameState);
-	}
-	else if (m_gameState == State::Payout)
-	{
-		m_game.payout();
-		m_game.paint(m_gameState);
-	}
-	else if (m_gameState == State::GameOver)
-	{
-		m_game.roundOver();
-		m_game.paint(m_gameState);
-		m_gameState = State::NewGame;
-	}
+	m_state = m_state->run();
+}
 
+void GameEngine::buildGameState()
+{
+	m_newGame.setNextState(&m_placeBets);
+	m_placeBets.setNextState(&m_deal);
+	m_deal.setNextState(&m_play);
+	m_play.setNextState(&m_dealerHit);
+	m_dealerHit.setNextState(&m_payout);
+	m_payout.setNextState(&m_gameOver);
+	m_gameOver.setNextState(&m_newGame);
 }

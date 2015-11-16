@@ -1,6 +1,5 @@
 #include "Game.h"
-#include "PokerTable.h"
-
+#include "GameState.h"
 #include <iostream>
 #include <string>
 
@@ -29,6 +28,11 @@ Game::~Game()
 {
 }
 
+PokerTable* Game::getTable() 
+{
+	return &m_pokerTable;
+}
+
 bool Game::dealerHitDone()
 {
 	return m_dealer.hitPastSoft17();
@@ -39,7 +43,7 @@ void Game::initFirstPlayer()
 	m_currentPlayer = &m_player1;
 }
 
-void Game::paint(State state)
+void Game::paint(GameState* state)
 {
 	m_pokerTable.drawTable(state, m_currentPlayer);
 	m_pokerTable.drawCards(state);

@@ -1,6 +1,7 @@
 #include "PokerTable.h"
 #include "Dealer.h"
 #include "Player.h"
+#include "GameState.h"
 #include <vector>
 
 using namespace std;
@@ -24,7 +25,7 @@ PokerTable::~PokerTable()
 {
 }
 
-void PokerTable::drawCards(State state)
+void PokerTable::drawCards(GameState* state)
 {
 	m_playerGraphics1.drawCards();
 	m_playerGraphics2.drawCards();
@@ -32,7 +33,25 @@ void PokerTable::drawCards(State state)
 	drawDealerCards(state);
 }
 
-void PokerTable::drawTable(State state, const Player* currentPlayer)
+void PokerTable::drawChips()
+{
+	m_chipGraphics.draw();
+}
+
+void PokerTable::drawPlay()
+{
+	m_playGraphics.draw();
+}
+
+void PokerTable::drawPayout()
+{
+	m_playerGraphics1.drawWin();
+	m_playerGraphics2.drawWin();
+	m_playerGraphics3.drawWin();
+	drawContinueButton();
+}
+
+void PokerTable::drawTable(GameState* state, const Player* currentPlayer)
 {
 	m_window.draw(m_feltSprite);
 	m_playerGraphics1.drawBetCircle(currentPlayer);
@@ -44,21 +63,22 @@ void PokerTable::drawTable(State state, const Player* currentPlayer)
 	m_playerGraphics1.drawBank();
 	m_playerGraphics2.drawBank();
 	m_playerGraphics3.drawBank();
-	if (state == State::PlaceBets)
-	{
-		m_chipGraphics.draw();
-	}
-	else if (state == State::Play)
-	{
-		m_playGraphics.draw();
-	}
-	else if (state == State::Payout)
-	{
-		m_playerGraphics1.drawWin();
-		m_playerGraphics2.drawWin();
-		m_playerGraphics3.drawWin();
-		drawContinueButton();
-	}
+	state->draw();
+	//if (state == State::PlaceBets)
+	//{
+	//	m_chipGraphics.draw();
+	//}
+	//else if (state == State::Play)
+	//{
+	//	m_playGraphics.draw();
+	//}
+	//else if (state == State::Payout)
+	//{
+	//	m_playerGraphics1.drawWin();
+	//	m_playerGraphics2.drawWin();
+	//	m_playerGraphics3.drawWin();
+	//	drawContinueButton();
+	//}
 
 }
 
@@ -83,7 +103,7 @@ void PokerTable::display()
 	m_window.display();
 }
 
-void PokerTable::drawDealerCards(BlackJack::State state)
+void PokerTable::drawDealerCards(GameState* state)
 {
 	vector<const Card*> cards;
 	m_dealer.getMyCards(cards, state);
