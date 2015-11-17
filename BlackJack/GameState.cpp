@@ -38,6 +38,7 @@ void GameState::setNextState(GameState* state)
 GameState* GameState::init()
 {
 	m_done = false;
+	doInit();
 	return this;
 }
 

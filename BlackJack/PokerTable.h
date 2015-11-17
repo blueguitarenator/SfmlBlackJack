@@ -18,6 +18,7 @@ public:
 	void drawTable(GameState* state, const Player* currentPlayer);
 	void drawCards(GameState* state);
 	void drawChips();
+	void drawChipsDone();
 	void drawPlay();
 	void drawPayout();
 	void display();

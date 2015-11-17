@@ -22,6 +22,7 @@ public:
 	virtual void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);
 
 	GameState* init();
+	virtual void doInit() {}
 	void setNextState(GameState* nextState);
 protected:
 	PokerTable* m_table;

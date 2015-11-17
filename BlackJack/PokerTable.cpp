@@ -39,6 +39,11 @@ void PokerTable::drawChips()
 	m_chipGraphics.draw();
 }
 
+void PokerTable::drawChipsDone()
+{
+	m_chipGraphics.drawDone();
+}
+
 void PokerTable::drawPlay()
 {
 	m_playGraphics.draw();

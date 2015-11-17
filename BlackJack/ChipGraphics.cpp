@@ -27,6 +27,11 @@ ChipGraphics::ChipGraphics(sf::RenderWindow& window)
 	m_doneChipCircle.setFillColor(sf::Color::Transparent);
 	m_doneChipCircle.setPosition(sf::Vector2f(DONE_CHIP_X, DONE_CHIP_Y));
 
+	resourceLoader.loadFont(m_doneFont, ResourceLoader::ARCON_FONT);
+	m_doneText.setFont(m_doneFont);
+	m_doneText.setString("DONE");
+	m_doneText.setCharacterSize(20);
+	m_doneText.setPosition(sf::Vector2f(DONE_CHIP_X + 20, DONE_CHIP_Y + 20));
 	
 }
 
@@ -49,5 +54,10 @@ void ChipGraphics::draw()
 	m_window.draw(m_fiveChipCircle);
 	m_window.draw(m_tenChipCircle);
 	m_window.draw(m_twentyFiveChipCircle);
+}
+
+void ChipGraphics::drawDone()
+{
 	m_window.draw(m_doneChipCircle);
+	m_window.draw(m_doneText);
 }
