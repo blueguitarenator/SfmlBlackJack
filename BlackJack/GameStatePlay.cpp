@@ -1,8 +1,7 @@
 #include "GameStatePlay.h"
-#include "BlackJack.h"
 #include "Game.h"
+#include "PlayState.h"
 
-using namespace BlackJack;
 using namespace std;
 
 GameStatePlay::GameStatePlay(Game* game, PokerTable* table)
@@ -17,8 +16,8 @@ GameStatePlay::~GameStatePlay()
 
 GameState* GameStatePlay::click(int x, int y)
 {
-	Play p = m_hitDetector.hitPlay(x, y);
-	if (p != Play::Unknown)
+	PlayState::Play p = m_hitDetector.hitPlay(x, y);
+	if (p != PlayState::Play::Unknown)
 	{
 		m_game->setPlayerPlay(p);
 		m_game->paint(this);

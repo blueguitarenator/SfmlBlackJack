@@ -6,6 +6,7 @@ public:
 	~PlayerBank();
 
 	void incrementBet(int value);
+	void decrementBet(int value);
 	int getBet() const;
 	int getBank() const;
 	int busted();

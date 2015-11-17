@@ -23,6 +23,11 @@ void PlayerBank::incrementBet(int value)
 	m_bet += value;
 }
 
+void PlayerBank::decrementBet(int value)
+{
+	m_bank -= value;
+}
+
 int PlayerBank::getBet() const
 {
 	return m_bet;

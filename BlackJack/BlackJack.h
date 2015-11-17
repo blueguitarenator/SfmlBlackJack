@@ -1,8 +1,7 @@
 #pragma once
 #include <limits>
 
-// black jack need to be excluded from payout
-// play state is running away after first round
+
 namespace BlackJack
 {
 	static const int DONE_BET = INT_MAX;
@@ -26,27 +25,4 @@ namespace BlackJack
 	static const float DOUBLE_BUTTON_X = 310.0f;
 	static const float SPLIT_BUTTON_X = 470.0f;
 
-	enum class Play
-	{
-		Hit,
-		Stay,
-		Split,
-		Double,
-		Bust,
-		BlackJack,
-		Unknown
-	};
-
-	enum class State
-	{
-		NewGame,
-		PlaceBets,
-		Deal,
-		CheckForBlackJack,
-		Play,
-		DealerHit,
-		Payout,
-		GameOver,
-		NextPlayer
-	};
 }

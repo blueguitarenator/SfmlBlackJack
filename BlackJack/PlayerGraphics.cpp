@@ -2,8 +2,8 @@
 #include "Player.h"
 #include "Card.h"
 #include "BlackJack.h"
+#include "PlayState.h"
 
-using namespace BlackJack;
 using namespace std;
 
 PlayerGraphics::PlayerGraphics(sf::RenderWindow& window, const Player& player, float myOffset)
@@ -78,7 +78,7 @@ void PlayerGraphics::drawBank()
 
 void PlayerGraphics::drawBet()
 {
-	if (m_player.getPlayChoice() == Play::Bust)
+	if (m_player.getPlayChoice() == PlayState::Play::Bust)
 	{
 		m_betText.setString("BUST");
 	}
@@ -86,7 +86,7 @@ void PlayerGraphics::drawBet()
 	{
 		m_betText.setString("$" + to_string(m_player.getBet()));
 	}
-	if (m_player.getPlayChoice() == Play::BlackJack)
+	if (m_player.getPlayChoice() == PlayState::Play::BlackJack)
 	{
 		drawWin();
 	}

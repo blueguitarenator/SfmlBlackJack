@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "BlackJack.h"
 #include "PlayerBank.h"
+#include "PlayState.h"
 
 class Card;
 
@@ -26,8 +26,8 @@ public:
 	int busted();
 
 	// play
-	void setPlayChoice(BlackJack::Play play);
-	BlackJack::Play getPlayChoice() const;
+	void setPlayChoice(PlayState::Play play);
+	PlayState::Play getPlayChoice() const;
 
 	// money
 	int getBank() const;
@@ -40,7 +40,7 @@ private:
 	std::string m_name;
 	Player* m_nextPlayer;
 	bool m_betDone;
-	BlackJack::Play m_playChoice;
-
+	//P::Play m_playChoice;
+	PlayState m_playState;
 };
 

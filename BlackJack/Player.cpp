@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "BlackJack.h"
 #include <iostream>
 
 using namespace std;
@@ -8,7 +9,7 @@ Player::Player(const std::string& name, Player* player)
 	:m_name(name), m_nextPlayer(player)
 {
 	m_betDone = false;
-	m_playChoice = Play::Unknown;
+	m_playState.init();
 }
 
 
@@ -34,7 +35,6 @@ void Player::addHumanBet(int value)
 	}
 	else
 	{
-		//m_bet += value;
 		m_bank.incrementBet(value);
 	}
 }
@@ -54,24 +54,20 @@ bool Player::makeBetDone()
 	return false;
 }
 
-void Player::setPlayChoice(Play play)
+void Player::setPlayChoice(PlayState::Play play)
 {
-	m_playChoice = play;
-	if (m_playChoice == Play::Double)
-	{
-		m_bank.incrementBet(m_bank.getBet());
-	}
+	m_playState.setChoice(m_bank, play);
 }
 
 int Player::busted()
 {
-	m_playChoice = Play::Bust;
-	return m_bank.busted();
+	m_playState.setChoice(m_bank, PlayState::Play::Bust);
+	return m_bank.getBet();
 }
 
-Play Player::getPlayChoice() const
+PlayState::Play Player::getPlayChoice() const
 {
-	return m_playChoice;
+	return m_playState.getChoice();
 }
 
 void Player::clearCards()
@@ -98,5 +94,5 @@ void Player::gameOver()
 {
 	m_myCards.clear();
 	m_bank.gameOver();
-	m_playChoice = Play::Unknown;
+	m_playState.init();
 }

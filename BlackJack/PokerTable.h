@@ -4,7 +4,6 @@
 #include "ChipGraphics.h"
 #include "PlayGraphics.h"
 #include "ResourceLoader.h"
-#include "BlackJack.h"
 
 class Dealer;
 class Player;

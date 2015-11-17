@@ -5,8 +5,8 @@
 #include "Shoe.h"
 #include "Dealer.h"
 #include "Player.h"
-#include "BlackJack.h"
 #include "PokerTable.h"
+#include "PlayState.h"
 
 #include <vector>
 
@@ -30,7 +30,7 @@ public:
 	bool playForRoundDone();
 	bool playHit();
 	bool playDouble();
-	void setPlayerPlay(BlackJack::Play play);
+	void setPlayerPlay(PlayState::Play play);
 	void initFirstPlayer();
 	bool dealerHitDone();
 	void payout();

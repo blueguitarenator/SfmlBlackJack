@@ -2,8 +2,8 @@
 #include "Shoe.h"
 #include "Player.h"
 #include "GameState.h"
+#include "PlayState.h"
 
-using namespace BlackJack;
 using namespace std;
 
 Dealer::Dealer(Shoe* shoe, Player* p1, Player* p2, Player* p3)
@@ -33,7 +33,7 @@ void Dealer::checkBlackJack(Player* player)
 	if (playerValue == 21)
 	{
 		payout(player, true);
-		player->setPlayChoice(Play::BlackJack);
+		player->setPlayChoice(PlayState::Play::BlackJack);
 	}
 }
 

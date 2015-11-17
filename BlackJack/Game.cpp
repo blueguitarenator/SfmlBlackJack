@@ -4,7 +4,6 @@
 #include <string>
 
 using namespace std;
-using namespace BlackJack;
 
 void doPayout(Player& p, Dealer& dealer);
 
@@ -50,19 +49,19 @@ void Game::paint(GameState* state)
 	m_pokerTable.display();
 }
 
-void Game::setPlayerPlay(Play play)
+void Game::setPlayerPlay(PlayState::Play play)
 {
 	m_currentPlayer->setPlayChoice(play);
 }
 
 bool Game::playHit()
 {
-	if (m_currentPlayer->getPlayChoice() == Play::Hit)
+	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Hit)
 	{
 		m_dealer.hit(m_currentPlayer);
-		if (m_currentPlayer->getPlayChoice() != Play::Bust)
+		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
 		{
-			m_currentPlayer->setPlayChoice(Play::Unknown);
+			m_currentPlayer->setPlayChoice(PlayState::Play::Unknown);
 		}
 		else
 		{
@@ -75,12 +74,12 @@ bool Game::playHit()
 
 bool Game::playDouble()
 {
-	if (m_currentPlayer->getPlayChoice() == Play::Double)
+	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Double)
 	{
 		m_dealer.hit(m_currentPlayer);
-		if (m_currentPlayer->getPlayChoice() != Play::Bust)
+		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
 		{
-			m_currentPlayer->setPlayChoice(Play::Stay);
+			m_currentPlayer->setPlayChoice(PlayState::Play::Stay);
 		}
 		m_currentPlayer = m_currentPlayer->getNextPlayer();
 		return true;
@@ -94,9 +93,9 @@ bool Game::playForPlayerDone()
 	{
 		return true;
 	}
-	if (m_currentPlayer->getPlayChoice() == Play::Stay || 
-		m_currentPlayer->getPlayChoice() == Play::Bust || 
-		m_currentPlayer->getPlayChoice() == Play::BlackJack)
+	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Stay ||
+		m_currentPlayer->getPlayChoice() == PlayState::Play::Bust ||
+		m_currentPlayer->getPlayChoice() == PlayState::Play::BlackJack)
 	{
 		m_currentPlayer = m_currentPlayer->getNextPlayer();
 		return true;
@@ -151,7 +150,7 @@ void Game::payout()
 
 void doPayout(Player& p, Dealer& dealer)
 {
-	if (p.getPlayChoice() != Play::BlackJack && p.getPlayChoice() != Play::Bust)
+	if (p.getPlayChoice() != PlayState::Play::BlackJack && p.getPlayChoice() != PlayState::Play::Bust)
 	{
 		dealer.payout(&p);
 	}

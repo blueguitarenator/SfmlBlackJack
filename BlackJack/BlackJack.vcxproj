@@ -146,6 +146,7 @@
     <ClCompile Include="PlayerBank.cpp" />
     <ClCompile Include="PlayerGraphics.cpp" />
     <ClCompile Include="PlayGraphics.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="PokerTable.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="Shoe.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="PlayerBank.h" />
     <ClInclude Include="PlayerGraphics.h" />
     <ClInclude Include="PlayGraphics.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="PokerTable.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Shoe.h" />

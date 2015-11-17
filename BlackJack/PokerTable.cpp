@@ -2,10 +2,11 @@
 #include "Dealer.h"
 #include "Player.h"
 #include "GameState.h"
+#include "BlackJack.h"
 #include <vector>
 
-using namespace std;
 using namespace BlackJack;
+using namespace std;
 
 PokerTable::PokerTable(sf::RenderWindow& window, const Player& p1, const Player& p2, const Player& p3, const Dealer& dealer)
 	:m_window(window), 
@@ -64,21 +65,6 @@ void PokerTable::drawTable(GameState* state, const Player* currentPlayer)
 	m_playerGraphics2.drawBank();
 	m_playerGraphics3.drawBank();
 	state->draw();
-	//if (state == State::PlaceBets)
-	//{
-	//	m_chipGraphics.draw();
-	//}
-	//else if (state == State::Play)
-	//{
-	//	m_playGraphics.draw();
-	//}
-	//else if (state == State::Payout)
-	//{
-	//	m_playerGraphics1.drawWin();
-	//	m_playerGraphics2.drawWin();
-	//	m_playerGraphics3.drawWin();
-	//	drawContinueButton();
-	//}
 
 }
 
