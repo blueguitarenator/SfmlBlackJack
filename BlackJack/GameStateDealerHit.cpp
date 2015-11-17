@@ -14,11 +14,9 @@ GameStateDealerHit::~GameStateDealerHit()
 
 GameState* GameStateDealerHit::run()
 {
-	GameState* state = this;
 	if (m_game->dealerHitDone())
 	{
-		state = m_nextState->init();
+		return m_nextState->init();
 	}
-	m_game->paint(this);
-	return state;
+	return this;
 }

@@ -15,7 +15,6 @@ GameStateDeal::~GameStateDeal()
 GameState* GameStateDeal::run()
 {
 	m_game->deal();
-	m_game->paint(this);
 	return m_nextState->init();
 }
 

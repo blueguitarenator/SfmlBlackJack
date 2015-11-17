@@ -27,13 +27,13 @@ GameEngine::~GameEngine()
 
 void GameEngine::mouseClick(int x, int y)
 {
-	m_state = m_state->click(x, y);
+	m_state = m_state->doClick(x, y);
 
 }
 
 void GameEngine::handlePollEvent()
 {
-	m_state = m_state->run();
+	m_state = m_state->doRun();
 }
 
 void GameEngine::buildGameState()

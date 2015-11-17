@@ -28,6 +28,5 @@ GameState* GameStateCheckBlackJack::run()
 		m_game->checkPlayerBlackJack();
 		m_game->initFirstPlayer();
 	}
-	m_game->paint(this);
 	return m_nextState->init();
 }

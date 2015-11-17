@@ -22,7 +22,6 @@ GameState* GameStatePayout::click(int x, int y)
 GameState* GameStatePayout::run()
 {
 	m_game->payout();
-	m_game->paint(this);
 	return this;
 }
 

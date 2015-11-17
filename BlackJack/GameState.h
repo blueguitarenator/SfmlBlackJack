@@ -13,7 +13,10 @@ public:
 	GameState(Game* game, PokerTable* table);
 	virtual ~GameState();
 
+	GameState* doRun();
+	GameState* doClick(int x, int y);
 	virtual GameState* run() = 0;
+	
 	virtual GameState* click(int x, int y);
 	virtual void draw();
 	virtual void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);

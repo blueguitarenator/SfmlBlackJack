@@ -16,6 +16,20 @@ GameState::~GameState()
 {
 }
 
+GameState* GameState::doRun()
+{
+	GameState* state = run();
+	m_game->paint(this);
+	return state;
+}
+
+GameState* GameState::doClick(int x, int y)
+{
+	GameState* state = click(x, y);
+	m_game->paint(this);
+	return state;
+}
+
 void GameState::setNextState(GameState* state)
 {
 	m_nextState = state;

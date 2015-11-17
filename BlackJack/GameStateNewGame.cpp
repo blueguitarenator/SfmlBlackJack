@@ -13,6 +13,5 @@ GameStateNewGame::~GameStateNewGame()
 GameState* GameStateNewGame::run()
 {
 	m_game->initFirstPlayer();
-	m_game->paint(this);
 	return m_nextState->init();
 }

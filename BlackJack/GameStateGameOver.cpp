@@ -14,6 +14,5 @@ GameStateGameOver::~GameStateGameOver()
 GameState* GameStateGameOver::run()
 {
 	m_game->roundOver();
-	m_game->paint(this);
 	return m_nextState->init();
 }
