@@ -16,8 +16,8 @@ public:
 
 	const std::vector<const Card*>* getCards() const;
 	void deal();
-	void checkBlackJack(Player* player);
-	bool checkDealerBlackJack();
+	//void checkBlackJack(Player* player);
+	//bool checkDealerBlackJack();
 	void newGame();
 	void getMyCards(std::vector<const Card*>& cards, GameState* state) const;
 	const Card* getShowCard() const;
@@ -26,6 +26,7 @@ public:
 	void payout(Player* player, bool blackJack = false);
 	void gameOver();
 	const Card* getDownCard() const;
+	void getPlayers(std::vector<Player*>& players) const;
 private:
 	// attributes
 	int m_bank;

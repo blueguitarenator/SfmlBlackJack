@@ -21,21 +21,28 @@ void Dealer::gameOver()
 	m_myCards.clear();
 }
 
-bool Dealer::checkDealerBlackJack()
+//bool Dealer::checkDealerBlackJack()
+//{
+//	int dealerValue = m_cardCalculator.getCardValue(&m_myCards);
+//	return dealerValue == 21;
+//}
+
+void Dealer::getPlayers(vector<Player*>& players) const
 {
-	int dealerValue = m_cardCalculator.getCardValue(&m_myCards);
-	return dealerValue == 21;
+	players.push_back(m_player1);
+	players.push_back(m_player2);
+	players.push_back(m_player3);
 }
 
-void Dealer::checkBlackJack(Player* player)
-{
-	int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
-	if (playerValue == 21)
-	{
-		payout(player, true);
-		player->setPlayChoice(PlayState::Play::BlackJack);
-	}
-}
+//void Dealer::checkBlackJack(Player* player)
+//{
+//	int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
+//	if (playerValue == 21)
+//	{
+//		payout(player, true);
+//		player->setPlayChoice(PlayState::Play::BlackJack);
+//	}
+//}
 
 void Dealer::payout(Player* player, bool blackJack)
 {

@@ -78,18 +78,18 @@ void PlayerGraphics::drawBank()
 
 void PlayerGraphics::drawBet()
 {
-	if (m_player.getPlayChoice() == PlayState::Play::Bust)
-	{
-		m_betText.setString("BUST");
-	}
-	else
-	{
-		m_betText.setString("$" + to_string(m_player.getBet()));
-	}
-	if (m_player.getPlayChoice() == PlayState::Play::BlackJack)
-	{
-		drawWin();
-	}
+	//if (m_player.getPlayChoice() == PlayState::Play::Bust)
+	//{
+	//	m_betText.setString("BUST");
+	//}
+	//else
+	//{
+	//	m_betText.setString("$" + to_string(m_player.getBet()));
+	//}
+	//if (m_player.getPlayChoice() == PlayState::Play::BlackJack)
+	//{
+	//	drawWin();
+	//}
 	m_window.draw(m_betText);
 }
 

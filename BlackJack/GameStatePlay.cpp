@@ -14,40 +14,52 @@ GameStatePlay::~GameStatePlay()
 {
 }
 
+void GameStatePlay::doInit()
+{
+	m_playState = m_game->initPlayState();
+}
+
 GameState* GameStatePlay::click(int x, int y)
 {
-	PlayState::Play p = m_hitDetector.hitPlay(x, y);
-	if (p != PlayState::Play::Unknown)
-	{
-		m_game->setPlayerPlay(p);
-	}
+	//HitDetector::Play p = m_hitDetector.hitPlay(x, y);
+	//if (p == HitDetector::Play::Hit)
+	//{
+
+		//m_game->setPlayerPlay(p);
+	//}
+	m_playState = m_playState->click(x, y);
 	return this;
 }
 
 GameState* GameStatePlay::run()
 {
-	m_game->playForPlayerDone();
-	if (m_game->playForRoundDone())
+	m_playState = m_playState->execute();
+	if (m_playState == nullptr)
 	{
 		return m_nextState->init();
 	}
-	else
-	{
-		if (m_game->playHit())
-		{
-			return this;
-		}
-		else if (m_game->playDouble())
-		{
-			return this;
-		}
-	}
+	//m_game->playForPlayerDone();
+	//if (m_game->playForRoundDone())
+	//{
+	//	return m_nextState->init();
+	//}
+	//else
+	//{
+	//	if (m_game->playHit())
+	//	{
+	//		return this;
+	//	}
+	//	else if (m_game->playDouble())
+	//	{
+	//		return this;
+	//	}
+	//}
 	return this;
 }
 
 void GameStatePlay::draw()
 {
-	m_table->drawPlay();
+	m_playState->draw();
 }
 
 void GameStatePlay::getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer)

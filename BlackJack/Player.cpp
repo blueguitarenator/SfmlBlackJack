@@ -9,12 +9,16 @@ Player::Player(const std::string& name, Player* player)
 	:m_name(name), m_nextPlayer(player)
 {
 	m_betDone = false;
-	m_playState.init();
 }
 
 
 Player::~Player()
 {
+}
+
+void Player::initPlayState(PlayState* playState)
+{
+	m_playState = playState;
 }
 
 int Player::getBet() const
@@ -54,21 +58,21 @@ bool Player::makeBetDone()
 	return false;
 }
 
-void Player::setPlayChoice(PlayState::Play play)
-{
-	m_playState.setChoice(m_bank, play);
-}
+//void Player::setPlayChoice(PlayState::Play play)
+//{
+//	m_playState.setChoice(m_bank, play);
+//}
 
 int Player::busted()
 {
-	m_playState.setChoice(m_bank, PlayState::Play::Bust);
+	//m_playState.setChoice(m_bank, PlayState::Play::Bust);
 	return m_bank.getBet();
 }
 
-PlayState::Play Player::getPlayChoice() const
-{
-	return m_playState.getChoice();
-}
+//PlayState::Play Player::getPlayChoice() const
+//{
+//	return m_playState.getChoice();
+//}
 
 void Player::clearCards()
 {
@@ -94,5 +98,5 @@ void Player::gameOver()
 {
 	m_myCards.clear();
 	m_bank.gameOver();
-	m_playState.init();
+	//m_playState.init();
 }

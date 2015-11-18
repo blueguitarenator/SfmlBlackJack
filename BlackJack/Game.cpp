@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "GameState.h"
+#include "PlayState.h"
+
 #include <iostream>
 #include <string>
 
@@ -12,7 +14,10 @@ Game::Game(sf::RenderWindow& window)
 	m_player1("One", &m_player2),
 	m_player2("Two", &m_player3),
 	m_player3("Three", nullptr),
-	m_dealer(&m_shoe, &m_player1, &m_player2, &m_player3)
+	m_dealer(&m_shoe, &m_player1, &m_player2, &m_player3),
+	m_playStateFactory1(this, &m_pokerTable),
+	m_playStateFactory2(this, &m_pokerTable),
+	m_playStateFactory3(this, &m_pokerTable)
 {
 	m_shoe.addDeck(&m_deck[0]);
 	m_shoe.addDeck(&m_deck[1]);
@@ -25,6 +30,14 @@ Game::Game(sf::RenderWindow& window)
 
 Game::~Game()
 {
+}
+
+PlayState* Game::initPlayState()
+{
+	m_playStateFactory1.createPlayState(&m_player1);
+	m_playStateFactory2.createPlayState(&m_player2);
+	m_playStateFactory3.createPlayState(&m_player3);
+	return m_player1.getPlayState();
 }
 
 PokerTable* Game::getTable() 
@@ -44,73 +57,77 @@ void Game::initFirstPlayer()
 
 void Game::paint(GameState* state)
 {
-	m_pokerTable.drawTable(state, m_currentPlayer);
 	m_pokerTable.drawCards(state);
 	m_pokerTable.display();
 }
 
-void Game::setPlayerPlay(PlayState::Play play)
+void Game::paint(GameState* gameState, PlayState* playState)
 {
-	m_currentPlayer->setPlayChoice(play);
+	m_pokerTable.drawTable(gameState, playState);
 }
 
-bool Game::playHit()
-{
-	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Hit)
-	{
-		m_dealer.hit(m_currentPlayer);
-		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
-		{
-			m_currentPlayer->setPlayChoice(PlayState::Play::Unknown);
-		}
-		else
-		{
-			m_currentPlayer = m_currentPlayer->getNextPlayer();
-		}
-		return true;
-	}
-	return false;
-}
+//void Game::setPlayerPlay(PlayState::Play play)
+//{
+//	m_currentPlayer->setPlayChoice(play);
+//}
 
-bool Game::playDouble()
-{
-	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Double)
-	{
-		m_dealer.hit(m_currentPlayer);
-		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
-		{
-			m_currentPlayer->setPlayChoice(PlayState::Play::Stay);
-		}
-		m_currentPlayer = m_currentPlayer->getNextPlayer();
-		return true;
-	}
-	return false;
-}
+//bool Game::playHit()
+//{
+//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Hit)
+//	{
+//		m_dealer.hit(m_currentPlayer);
+//		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
+//		{
+//			m_currentPlayer->setPlayChoice(PlayState::Play::Unknown);
+//		}
+//		else
+//		{
+//			m_currentPlayer = m_currentPlayer->getNextPlayer();
+//		}
+//		return true;
+//	}
+//	return false;
+//}
 
-bool Game::playForPlayerDone()
-{
-	if (m_currentPlayer == nullptr)
-	{
-		return true;
-	}
-	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Stay ||
-		m_currentPlayer->getPlayChoice() == PlayState::Play::Bust ||
-		m_currentPlayer->getPlayChoice() == PlayState::Play::BlackJack)
-	{
-		m_currentPlayer = m_currentPlayer->getNextPlayer();
-		return true;
-	}
-	return false;
-}
+//bool Game::playDouble()
+//{
+//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Double)
+//	{
+//		m_dealer.hit(m_currentPlayer);
+//		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
+//		{
+//			m_currentPlayer->setPlayChoice(PlayState::Play::Stay);
+//		}
+//		m_currentPlayer = m_currentPlayer->getNextPlayer();
+//		return true;
+//	}
+//	return false;
+//}
 
-bool Game::playForRoundDone()
-{
-	if (m_currentPlayer == nullptr)
-	{
-		return true;
-	}
-	return false;
-}
+//bool Game::playForPlayerDone()
+//{
+//	if (m_currentPlayer == nullptr)
+//	{
+//		return true;
+//	}
+//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Stay ||
+//		m_currentPlayer->getPlayChoice() == PlayState::Play::Bust ||
+//		m_currentPlayer->getPlayChoice() == PlayState::Play::BlackJack)
+//	{
+//		m_currentPlayer = m_currentPlayer->getNextPlayer();
+//		return true;
+//	}
+//	return false;
+//}
+
+//bool Game::playForRoundDone()
+//{
+//	if (m_currentPlayer == nullptr)
+//	{
+//		return true;
+//	}
+//	return false;
+//}
 
 bool Game::placeBetsPlayerDone()
 {
@@ -150,23 +167,23 @@ void Game::payout()
 
 void doPayout(Player& p, Dealer& dealer)
 {
-	if (p.getPlayChoice() != PlayState::Play::BlackJack && p.getPlayChoice() != PlayState::Play::Bust)
-	{
-		dealer.payout(&p);
-	}
+	//if (p.getPlayChoice() != PlayState::Play::BlackJack && p.getPlayChoice() != PlayState::Play::Bust)
+	//{
+	//	dealer.payout(&p);
+	//}
 }
 
-bool Game::checkDealerBlackJack()
-{
-	return m_dealer.checkDealerBlackJack();
-}
-
-void Game::checkPlayerBlackJack()
-{
-	m_dealer.checkBlackJack(&m_player1);
-	m_dealer.checkBlackJack(&m_player2);
-	m_dealer.checkBlackJack(&m_player3);
-}
+//bool Game::checkDealerBlackJack()
+//{
+//	return m_dealer.checkDealerBlackJack();
+//}
+//
+//void Game::checkPlayerBlackJack()
+//{
+//	m_dealer.checkBlackJack(&m_player1);
+//	m_dealer.checkBlackJack(&m_player2);
+//	m_dealer.checkBlackJack(&m_player3);
+//}
 
 void Game::roundOver()
 {
@@ -174,5 +191,5 @@ void Game::roundOver()
 	m_player1.gameOver();
 	m_player2.gameOver();
 	m_player3.gameOver();
-	m_currentPlayer = nullptr;
+	//m_currentPlayer = nullptr;
 }

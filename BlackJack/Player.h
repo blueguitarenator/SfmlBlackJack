@@ -2,9 +2,10 @@
 #include <vector>
 #include <string>
 #include "PlayerBank.h"
-#include "PlayState.h"
+//#include "PlayState.h"
 
 class Card;
+class PlayState;
 
 class Player
 {
@@ -26,14 +27,17 @@ public:
 	int busted();
 
 	// play
-	void setPlayChoice(PlayState::Play play);
-	PlayState::Play getPlayChoice() const;
+	//void setPlayChoice(PlayState::Play play);
+	//PlayState::Play getPlayChoice() const;
 
 	// money
 	int getBank() const;
 	Player* getNextPlayer() { return m_nextPlayer; }
 	void setWinnings(float value);
 	float getWinnings() const;
+
+	void initPlayState(PlayState* playState);
+	PlayState* getPlayState() { return m_playState; }
 private:
 	std::vector<const Card*> m_myCards;
 	PlayerBank m_bank;
@@ -41,6 +45,6 @@ private:
 	Player* m_nextPlayer;
 	bool m_betDone;
 	//P::Play m_playChoice;
-	PlayState m_playState;
+	PlayState* m_playState;
 };
 

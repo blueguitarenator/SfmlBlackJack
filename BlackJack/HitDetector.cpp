@@ -42,25 +42,24 @@ int HitDetector::hitChip(int x, int y) const
 	return -1;
 }
 
-PlayState::Play HitDetector::hitPlay(int x, int y) const
+bool HitDetector::hitHit(int x, int y) const
 {
-	if (x > HIT_BUTTON_X && x < HIT_BUTTON_X + BUTTON_WIDTH &&
-		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
-	{
-		return PlayState::Play::Hit;
-	}
-	else if (x > STAY_BUTTON_X && x < STAY_BUTTON_X + BUTTON_WIDTH &&
-		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
-	{
-		return PlayState::Play::Stay;
-	}
-	else if (x > DOUBLE_BUTTON_X && x < DOUBLE_BUTTON_X + BUTTON_WIDTH &&
-		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT)
-	{
-		return PlayState::Play::Double;
-	}
-
-	return PlayState::Play::Unknown;
+	return x > HIT_BUTTON_X && x < HIT_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT;
+}
+bool HitDetector::hitStay(int x, int y) const
+{
+	return x > STAY_BUTTON_X && x < STAY_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT;
+}
+bool HitDetector::hitDouble(int x, int y) const
+{
+	return x > DOUBLE_BUTTON_X && x < DOUBLE_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT;
+}
+bool HitDetector::hitSplit(int x, int y) const
+{
+	return false;
 }
 
 bool HitDetector::hitContinue(int x, int y) const
