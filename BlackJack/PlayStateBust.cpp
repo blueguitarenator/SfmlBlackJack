@@ -14,7 +14,7 @@ PlayStateBust::~PlayStateBust()
 
 PlayState* PlayStateBust::execute()
 {
-	return m_player->getPlayState();
+	return m_player->getNextPlayer()->getPlayState();
 }
 
 void PlayStateBust::doDraw()

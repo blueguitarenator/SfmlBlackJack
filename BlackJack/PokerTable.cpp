@@ -58,12 +58,12 @@ void PokerTable::drawPayout()
 	drawContinueButton();
 }
 
-void PokerTable::drawTable(GameState* state, const PlayState* playState)
+void PokerTable::drawTable(GameState* state)
 {
 	m_window.draw(m_feltSprite);
-	m_playerGraphics1.drawBetCircle(playState->getPlayer());
-	m_playerGraphics2.drawBetCircle(playState->getPlayer());
-	m_playerGraphics3.drawBetCircle(playState->getPlayer());
+	m_playerGraphics1.drawBetCircle();
+	m_playerGraphics2.drawBetCircle();
+	m_playerGraphics3.drawBetCircle();
 	m_playerGraphics1.drawBet();
 	m_playerGraphics2.drawBet();
 	m_playerGraphics3.drawBet();

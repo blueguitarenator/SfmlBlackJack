@@ -3,6 +3,7 @@
 
 class PlayStateHit;
 class PlayStateStay;
+class PlayStateDouble;
 
 class PlayStateBegin : public PlayState
 {
@@ -12,11 +13,14 @@ public:
 
 	void setHit(PlayStateHit* hit);
 	void setStay(PlayStateStay* stay);
+	void setDouble(PlayStateDouble* double_);
 	PlayState* execute();
 	void doDraw();
 	PlayState* click(int x, int y);
+	void doInit();
 private:
 	PlayStateHit* m_hit;
 	PlayStateStay* m_stay;
+	PlayStateDouble* m_double;
 };
 

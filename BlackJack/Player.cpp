@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "BlackJack.h"
+#include "PlayState.h"
 #include <iostream>
 
 using namespace std;
@@ -8,7 +9,6 @@ using namespace BlackJack;
 Player::Player(const std::string& name, Player* player)
 	:m_name(name), m_nextPlayer(player)
 {
-	m_betDone = false;
 }
 
 
@@ -16,9 +16,9 @@ Player::~Player()
 {
 }
 
-void Player::initPlayState(PlayState* playState)
+void Player::incrementBet(int value)
 {
-	m_playState = playState;
+	m_bet += value;
 }
 
 int Player::getBet() const
@@ -26,53 +26,45 @@ int Player::getBet() const
 	return m_bank.getBet();
 }
 
+Player* Player::getNextPlayer() 
+{ 
+	if (m_nextPlayer != nullptr)
+	{
+		m_nextPlayer->setIsActive(true);
+	}
+	m_isActive = false;
+	return m_nextPlayer; 
+}
+
+PlayState* Player::getPlayState() const
+{ 
+	return m_playState; 
+}
+
+PlayState* Player::getBetState() const
+{ 
+	return m_betState; 
+}
+
+void Player::initPlayState(PlayState* playState)
+{
+	m_playState = playState;
+}
+
+void Player::initBetState(PlayState* playState)
+{
+	m_betState = playState;
+}
+
 int Player::getBank() const
 {
 	return m_bank.getBank();
-}
-
-void Player::addHumanBet(int value)
-{
-	if (value == DONE_BET)
-	{
-		m_betDone = true;
-	}
-	else
-	{
-		m_bank.incrementBet(value);
-	}
 }
 
 void Player::pushCard(const Card* card)
 {
 	m_myCards.push_back(card);
 }
-
-bool Player::makeBetDone()
-{
-	if (m_betDone)
-	{
-		m_betDone = false;
-		return true;
-	}
-	return false;
-}
-
-//void Player::setPlayChoice(PlayState::Play play)
-//{
-//	m_playState.setChoice(m_bank, play);
-//}
-
-int Player::busted()
-{
-	//m_playState.setChoice(m_bank, PlayState::Play::Bust);
-	return m_bank.getBet();
-}
-
-//PlayState::Play Player::getPlayChoice() const
-//{
-//	return m_playState.getChoice();
-//}
 
 void Player::clearCards()
 {
@@ -98,5 +90,4 @@ void Player::gameOver()
 {
 	m_myCards.clear();
 	m_bank.gameOver();
-	//m_playState.init();
 }

@@ -1,10 +1,9 @@
 #include "GameStatePlaceBets.h"
 #include "Game.h"
-#include "BlackJack.h"
-
+#include "PlayState.h"
 
 GameStatePlaceBets::GameStatePlaceBets(Game* game, PokerTable* table)
-	:GameState(game, table), m_thisPlayerBet(false)
+	:GameState(game, table)
 {
 }
 
@@ -15,33 +14,18 @@ GameStatePlaceBets::~GameStatePlaceBets()
 
 void GameStatePlaceBets::doInit()
 {
-	m_thisPlayerBet = false;
+	m_playState = m_game->initBetState();
 }
 
 GameState* GameStatePlaceBets::click(int x, int y)
 {	
-	int value = m_hitDetector.hitChip(x, y);
-	if (value != -1)
-	{
-		m_thisPlayerBet |= value != BlackJack::DONE_BET;
-		if (!m_thisPlayerBet && value == BlackJack::DONE_BET)
-		{
-			return this;
-		}
-		if (value == BlackJack::DONE_BET)
-		{
-			m_thisPlayerBet = false;
-		}
-		m_game->setPlayerBet(value);
-	}
+	m_playState = m_playState->click(x, y);
 	return this;
 }
 
 GameState* GameStatePlaceBets::run()
 {
-	m_game->placeBetsPlayerDone();
-
-	if (m_game->placeBetsRoundDone())
+	if (m_playState == nullptr)
 	{
 		return m_nextState->init();
 	}
@@ -51,8 +35,9 @@ GameState* GameStatePlaceBets::run()
 void GameStatePlaceBets::draw()
 {
 	m_table->drawChips();
-	if (m_thisPlayerBet)
+	if (m_playState != nullptr)
 	{
-		m_table->drawChipsDone();
+		m_playState->draw();
+		m_playState->getPlayer()->getBetState()->draw();
 	}
 }

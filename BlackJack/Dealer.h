@@ -16,8 +16,6 @@ public:
 
 	const std::vector<const Card*>* getCards() const;
 	void deal();
-	//void checkBlackJack(Player* player);
-	//bool checkDealerBlackJack();
 	void newGame();
 	void getMyCards(std::vector<const Card*>& cards, GameState* state) const;
 	const Card* getShowCard() const;

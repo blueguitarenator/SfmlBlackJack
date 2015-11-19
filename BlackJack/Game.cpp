@@ -32,11 +32,22 @@ Game::~Game()
 {
 }
 
+PlayState* Game::initBetState()
+{
+	m_playStateFactory1.createBetState(&m_player1);
+	m_playStateFactory2.createBetState(&m_player2);
+	m_playStateFactory3.createBetState(&m_player3);
+	m_player1.setIsActive(true);
+	return m_player1.getBetState();
+}
+
 PlayState* Game::initPlayState()
 {
 	m_playStateFactory1.createPlayState(&m_player1);
 	m_playStateFactory2.createPlayState(&m_player2);
 	m_playStateFactory3.createPlayState(&m_player3);
+	m_player1.setIsActive(true);
+
 	return m_player1.getPlayState();
 }
 
@@ -57,100 +68,9 @@ void Game::initFirstPlayer()
 
 void Game::paint(GameState* state)
 {
+	m_pokerTable.drawTable(state);
 	m_pokerTable.drawCards(state);
 	m_pokerTable.display();
-}
-
-void Game::paint(GameState* gameState, PlayState* playState)
-{
-	m_pokerTable.drawTable(gameState, playState);
-}
-
-//void Game::setPlayerPlay(PlayState::Play play)
-//{
-//	m_currentPlayer->setPlayChoice(play);
-//}
-
-//bool Game::playHit()
-//{
-//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Hit)
-//	{
-//		m_dealer.hit(m_currentPlayer);
-//		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
-//		{
-//			m_currentPlayer->setPlayChoice(PlayState::Play::Unknown);
-//		}
-//		else
-//		{
-//			m_currentPlayer = m_currentPlayer->getNextPlayer();
-//		}
-//		return true;
-//	}
-//	return false;
-//}
-
-//bool Game::playDouble()
-//{
-//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Double)
-//	{
-//		m_dealer.hit(m_currentPlayer);
-//		if (m_currentPlayer->getPlayChoice() != PlayState::Play::Bust)
-//		{
-//			m_currentPlayer->setPlayChoice(PlayState::Play::Stay);
-//		}
-//		m_currentPlayer = m_currentPlayer->getNextPlayer();
-//		return true;
-//	}
-//	return false;
-//}
-
-//bool Game::playForPlayerDone()
-//{
-//	if (m_currentPlayer == nullptr)
-//	{
-//		return true;
-//	}
-//	if (m_currentPlayer->getPlayChoice() == PlayState::Play::Stay ||
-//		m_currentPlayer->getPlayChoice() == PlayState::Play::Bust ||
-//		m_currentPlayer->getPlayChoice() == PlayState::Play::BlackJack)
-//	{
-//		m_currentPlayer = m_currentPlayer->getNextPlayer();
-//		return true;
-//	}
-//	return false;
-//}
-
-//bool Game::playForRoundDone()
-//{
-//	if (m_currentPlayer == nullptr)
-//	{
-//		return true;
-//	}
-//	return false;
-//}
-
-bool Game::placeBetsPlayerDone()
-{
-	if (m_currentPlayer->makeBetDone())
-	{
-		m_currentPlayer = m_currentPlayer->getNextPlayer();
-		return true;
-	}
-	return false;
-}
-
-bool Game::placeBetsRoundDone()
-{
-	if (m_currentPlayer == nullptr)
-	{
-		return true;
-	}
-	return false;
-}
-
-void Game::setPlayerBet(int value)
-{
-	m_currentPlayer->addHumanBet(value);
 }
 
 void Game::deal()
@@ -173,23 +93,10 @@ void doPayout(Player& p, Dealer& dealer)
 	//}
 }
 
-//bool Game::checkDealerBlackJack()
-//{
-//	return m_dealer.checkDealerBlackJack();
-//}
-//
-//void Game::checkPlayerBlackJack()
-//{
-//	m_dealer.checkBlackJack(&m_player1);
-//	m_dealer.checkBlackJack(&m_player2);
-//	m_dealer.checkBlackJack(&m_player3);
-//}
-
 void Game::roundOver()
 {
 	m_dealer.gameOver();
 	m_player1.gameOver();
 	m_player2.gameOver();
 	m_player3.gameOver();
-	//m_currentPlayer = nullptr;
 }

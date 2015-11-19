@@ -57,9 +57,9 @@ void PlayerGraphics::drawCards()
 	}
 }
 
-void PlayerGraphics::drawBetCircle(const Player* currentPlayer)
+void PlayerGraphics::drawBetCircle()
 {
-	if (currentPlayer == &m_player)
+	if (m_player.isActive())
 	{
 		m_betCircle.setOutlineColor(sf::Color::Yellow);
 	}

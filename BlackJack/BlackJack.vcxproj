@@ -148,7 +148,9 @@
     <ClCompile Include="PlayGraphics.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="PlayStateBegin.cpp" />
+    <ClCompile Include="PlayStateBet.cpp" />
     <ClCompile Include="PlayStateBust.cpp" />
+    <ClCompile Include="PlayStateDouble.cpp" />
     <ClCompile Include="PlayStateFactory.cpp" />
     <ClCompile Include="PlayStateHit.cpp" />
     <ClCompile Include="PlayStateStay.cpp" />
@@ -181,7 +183,9 @@
     <ClInclude Include="PlayGraphics.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="PlayStateBegin.h" />
+    <ClInclude Include="PlayStateBet.h" />
     <ClInclude Include="PlayStateBust.h" />
+    <ClInclude Include="PlayStateDouble.h" />
     <ClInclude Include="PlayStateFactory.h" />
     <ClInclude Include="PlayStateHit.h" />
     <ClInclude Include="PlayStateStay.h" />

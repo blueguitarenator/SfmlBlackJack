@@ -20,24 +20,14 @@ public:
 	~Game();
 
 	void paint(GameState* state);
-	void paint(GameState* gameState, PlayState* playState);
-	bool placeBetsRoundDone();
-	bool placeBetsPlayerDone();
 	void deal();
-	//void checkPlayerBlackJack();
-	//bool checkDealerBlackJack();
-	void setPlayerBet(int value);
-	//bool playForPlayerDone();
-	//bool playForRoundDone();
-	//bool playHit();
-	//bool playDouble();
-	//void setPlayerPlay(PlayState::Play play);
 	void initFirstPlayer();
 	bool dealerHitDone();
 	void payout();
 	void roundOver();
 	PokerTable* getTable();
 	PlayState* initPlayState();
+	PlayState* initBetState();
 	Dealer* getDealer() { return &m_dealer; }
 private:
 	// attributes
@@ -51,7 +41,6 @@ private:
 	Player m_player3;
 	Player* m_currentPlayer;
 
-	//PlayState* m_playState1;
 	PlayStateFactory m_playStateFactory1;
 	PlayStateFactory m_playStateFactory2;
 	PlayStateFactory m_playStateFactory3;

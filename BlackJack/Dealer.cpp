@@ -21,28 +21,12 @@ void Dealer::gameOver()
 	m_myCards.clear();
 }
 
-//bool Dealer::checkDealerBlackJack()
-//{
-//	int dealerValue = m_cardCalculator.getCardValue(&m_myCards);
-//	return dealerValue == 21;
-//}
-
 void Dealer::getPlayers(vector<Player*>& players) const
 {
 	players.push_back(m_player1);
 	players.push_back(m_player2);
 	players.push_back(m_player3);
 }
-
-//void Dealer::checkBlackJack(Player* player)
-//{
-//	int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
-//	if (playerValue == 21)
-//	{
-//		payout(player, true);
-//		player->setPlayChoice(PlayState::Play::BlackJack);
-//	}
-//}
 
 void Dealer::payout(Player* player, bool blackJack)
 {
@@ -89,10 +73,6 @@ bool Dealer::hitPastSoft17()
 void Dealer::hit(Player* player)
 {
 	player->pushCard(m_shoe->draw());
-	if (isBust(player->getMyCards()))
-	{
-		m_bank += player->busted();
-	}
 }
 
 const Card* Dealer::getShowCard() const
@@ -112,15 +92,6 @@ const Card* Dealer::getDownCard() const
 
 void Dealer::getMyCards(vector<const Card*>& cards, GameState* state) const
 {
-	//m_myCards.clear();
-	//Card* ace = new Card();
-	//Card* king = new Card();
-	//ace->init(Card::Rank::Ace, Card::Suit::CLUB);
-	//king->init(Card::Rank::King, Card::Suit::CLUB);
-	//ace->setCardGraphic("ace_of_clubs.png");
-	//king->setCardGraphic("king_of_clubs2.png");
-	//m_myCards.push_back(ace);
-	//m_myCards.push_back(king);
 	if (m_myCards.size() > 1)
 	{
 		state->getDealerCards(cards, this);

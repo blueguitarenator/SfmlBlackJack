@@ -15,11 +15,10 @@ public:
 	PokerTable(sf::RenderWindow& window, const Player& p1, const Player& p2, const Player& p3, const Dealer& dealer);
 	~PokerTable();
 
-	void drawTable(GameState* state, const PlayState* playState);
+	void drawTable(GameState* state);
 	void drawCards(GameState* state);
 	void drawChips();
 	void drawChipsDone();
-	//void drawPlay();
 	void drawPayout();
 	void display();
 
