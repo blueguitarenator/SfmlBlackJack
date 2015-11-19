@@ -143,7 +143,6 @@
     <ClCompile Include="HitDetector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerBank.cpp" />
     <ClCompile Include="PlayerGraphics.cpp" />
     <ClCompile Include="PlayGraphics.cpp" />
     <ClCompile Include="PlayState.cpp" />
@@ -178,7 +177,6 @@
     <ClInclude Include="GameStatePlay.h" />
     <ClInclude Include="HitDetector.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerBank.h" />
     <ClInclude Include="PlayerGraphics.h" />
     <ClInclude Include="PlayGraphics.h" />
     <ClInclude Include="PlayState.h" />

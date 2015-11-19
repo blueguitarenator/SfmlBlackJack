@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "PlayerBank.h"
 
 class Card;
 class PlayState;
@@ -22,10 +21,11 @@ public:
 	int getBet() const;
 	void incrementBet(int bet);
 
-
-	int getBank() const;
+	float getBank() const;
 	Player* getNextPlayer();
 	void setWinnings(float value);
+	void setPush();
+	void setBusted();
 	float getWinnings() const;
 
 	void initPlayState(PlayState* playState);
@@ -37,8 +37,9 @@ public:
 private:
 	bool m_isActive;
 	std::vector<const Card*> m_myCards;
-	PlayerBank m_bank;
+	float m_bank;
 	int m_bet;
+	float m_winnings;
 	std::string m_name;
 	Player* m_nextPlayer;
 	PlayState* m_playState;

@@ -26,6 +26,7 @@ PlayState* PlayStateBet::click(int x, int y)
 		if (value != BlackJack::DONE_BET)
 		{
 			m_done = true;
+			m_player->incrementBet(value);
 		}
 		else
 		{

@@ -78,6 +78,7 @@ void PlayerGraphics::drawBank()
 
 void PlayerGraphics::drawBet()
 {
+	m_betText.setString("$" + to_string(m_player.getBet()));
 	//if (m_player.getPlayChoice() == PlayState::Play::Bust)
 	//{
 	//	m_betText.setString("BUST");

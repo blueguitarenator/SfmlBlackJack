@@ -28,6 +28,13 @@ void Dealer::getPlayers(vector<Player*>& players) const
 	players.push_back(m_player3);
 }
 
+void Dealer::playerBusted(Player* player)
+{
+	int bet = player->getBet();
+	m_bank += bet;
+	player->setBusted();
+}
+
 void Dealer::payout(Player* player, bool blackJack)
 {
 	int bet = player->getBet();
@@ -49,7 +56,7 @@ void Dealer::payout(Player* player, bool blackJack)
 		}
 		else if (dealerValue == playerValue)
 		{
-			player->setWinnings(0.0f);
+			player->setPush();
 		}
 		else
 		{

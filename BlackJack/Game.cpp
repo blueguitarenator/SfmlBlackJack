@@ -87,10 +87,10 @@ void Game::payout()
 
 void doPayout(Player& p, Dealer& dealer)
 {
-	//if (p.getPlayChoice() != PlayState::Play::BlackJack && p.getPlayChoice() != PlayState::Play::Bust)
-	//{
-	//	dealer.payout(&p);
-	//}
+	if (p.getBet() > 0)
+	{
+		dealer.payout(&p);
+	}
 }
 
 void Game::roundOver()

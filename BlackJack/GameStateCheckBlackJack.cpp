@@ -1,6 +1,7 @@
 #include "GameStateCheckBlackJack.h"
 #include "Game.h"
 #include "GameStatePayout.h"
+#include "GameStatePlay.h"
 #include <vector>
 
 using namespace std;
@@ -15,9 +16,19 @@ GameStateCheckBlackJack::~GameStateCheckBlackJack()
 {
 }
 
+void GameStateCheckBlackJack::doInit()
+{
+	m_nextState = m_play;
+}
+
 void GameStateCheckBlackJack::setPayout(GameStatePayout* payout)
 {
 	m_payout = payout;
+}
+
+void GameStateCheckBlackJack::setPlay(GameStatePlay* play)
+{
+	m_play = play;
 }
 
 GameState* GameStateCheckBlackJack::run()

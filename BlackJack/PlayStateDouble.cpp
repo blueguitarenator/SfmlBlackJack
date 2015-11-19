@@ -1,6 +1,8 @@
 #include "PlayStateDouble.h"
 #include "Player.h"
 #include "PlayStateStay.h"
+#include "Dealer.h"
+#include "Game.h"
 
 PlayStateDouble::PlayStateDouble(Game* game, PokerTable* table)
 	:PlayState(game, table)
@@ -19,6 +21,8 @@ void PlayStateDouble::setStay(PlayStateStay* stay)
 
 PlayState* PlayStateDouble::execute()
 {
-	m_player->incrementBet(m_player->getBet() * 2);
+	m_player->incrementBet(m_player->getBet());
+	Dealer* dealer = m_game->getDealer();
+	dealer->hit(m_player);
 	return m_stay;
 }

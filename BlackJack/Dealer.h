@@ -25,6 +25,7 @@ public:
 	void gameOver();
 	const Card* getDownCard() const;
 	void getPlayers(std::vector<Player*>& players) const;
+	void playerBusted(Player* player);
 private:
 	// attributes
 	int m_bank;

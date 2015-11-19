@@ -38,6 +38,5 @@ void GameStatePlaceBets::draw()
 	if (m_playState != nullptr)
 	{
 		m_playState->draw();
-		m_playState->getPlayer()->getBetState()->draw();
 	}
 }
