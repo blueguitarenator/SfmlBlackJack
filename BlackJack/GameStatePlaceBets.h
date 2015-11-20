@@ -1,6 +1,8 @@
 #pragma once
 #include "GameState.h"
 
+class PlayState;
+
 class GameStatePlaceBets : public GameState
 {
 public:
@@ -15,5 +17,6 @@ private:
 	GameStatePlaceBets(const GameStatePlaceBets&);                 // Prevent copy-construction
 	GameStatePlaceBets& operator=(const GameStatePlaceBets&);      // Prevent assignment
 
-	bool m_thisPlayerBet;
+	PlayState* m_playState;
+
 };

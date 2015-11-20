@@ -12,8 +12,6 @@ public:
 private:
 	GameStateDealerHit(const GameStateDealerHit&);                 // Prevent copy-construction
 	GameStateDealerHit& operator=(const GameStateDealerHit&);      // Prevent assignment
-
-
 };
 
 

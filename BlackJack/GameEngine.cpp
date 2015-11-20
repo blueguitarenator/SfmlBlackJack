@@ -43,6 +43,7 @@ void GameEngine::buildGameState()
 	m_deal.setNextState(&m_checkBlackJack);
 	m_checkBlackJack.setNextState(&m_play);
 	m_checkBlackJack.setPayout(&m_payout);
+	m_checkBlackJack.setPlay(&m_play);
 	m_play.setNextState(&m_dealerHit);
 	m_dealerHit.setNextState(&m_payout);
 	m_payout.setNextState(&m_gameOver);

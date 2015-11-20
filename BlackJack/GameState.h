@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "HitDetector.h"
+#include "CardCalculator.h"
 
 class Game;
 class Dealer;
@@ -28,6 +29,7 @@ protected:
 	PokerTable* m_table;
 	Game* m_game;
 	HitDetector m_hitDetector;
+	CardCalculator m_cardCalculator;
 	bool m_done;
 	GameState* m_nextState;
 

@@ -1,15 +1,14 @@
 #include "Player.h"
 #include "BlackJack.h"
+#include "PlayState.h"
 #include <iostream>
 
 using namespace std;
 using namespace BlackJack;
 
 Player::Player(const std::string& name, Player* player)
-	:m_name(name), m_nextPlayer(player)
+	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true)
 {
-	m_betDone = false;
-	m_playState.init();
 }
 
 
@@ -17,57 +16,55 @@ Player::~Player()
 {
 }
 
+void Player::incrementBet(int value)
+{
+	m_bank -= value;
+	m_bet += value;
+}
+
 int Player::getBet() const
 {
-	return m_bank.getBet();
+	return m_bet;
 }
 
-int Player::getBank() const
-{
-	return m_bank.getBank();
+Player* Player::getNextPlayer() 
+{ 
+	if (m_nextPlayer != nullptr)
+	{
+		m_nextPlayer->setIsActive(true);
+	}
+	m_isActive = false;
+	return m_nextPlayer; 
 }
 
-void Player::addHumanBet(int value)
+PlayState* Player::getPlayState() const
+{ 
+	return m_playState; 
+}
+
+PlayState* Player::getBetState() const
+{ 
+	return m_betState; 
+}
+
+void Player::initPlayState(PlayState* playState)
 {
-	if (value == DONE_BET)
-	{
-		m_betDone = true;
-	}
-	else
-	{
-		m_bank.incrementBet(value);
-	}
+	m_playState = playState;
+}
+
+void Player::initBetState(PlayState* playState)
+{
+	m_betState = playState;
+}
+
+float Player::getBank() const
+{
+	return m_bank;
 }
 
 void Player::pushCard(const Card* card)
 {
 	m_myCards.push_back(card);
-}
-
-bool Player::makeBetDone()
-{
-	if (m_betDone)
-	{
-		m_betDone = false;
-		return true;
-	}
-	return false;
-}
-
-void Player::setPlayChoice(PlayState::Play play)
-{
-	m_playState.setChoice(m_bank, play);
-}
-
-int Player::busted()
-{
-	m_playState.setChoice(m_bank, PlayState::Play::Bust);
-	return m_bank.getBet();
-}
-
-PlayState::Play Player::getPlayChoice() const
-{
-	return m_playState.getChoice();
 }
 
 void Player::clearCards()
@@ -80,19 +77,39 @@ const std::vector<const Card*>* Player::getMyCards() const
 	return &m_myCards;
 }
 
+void Player::setPush()
+{
+	m_winnings = 0.0f;
+}
+
+void Player::setBusted()
+{
+	m_isInGame = false;
+	m_bet = -1;
+	m_winnings = 0.0f;
+}
+
 void Player::setWinnings(float value)
 {
-	m_bank.setWinnings(value);
+	m_isInGame = false;
+	m_winnings = value;
 }
 
 float Player::getWinnings() const
 {
-	return m_bank.getWinnings();
+	return m_winnings;
 }
 
 void Player::gameOver()
 {
 	m_myCards.clear();
-	m_bank.gameOver();
-	m_playState.init();
+	m_bank += (m_winnings + (m_bet > 0 ? m_bet : 0));
+	m_winnings = 0.0f;
+	m_bet = 0;
+	m_isInGame = true;
+}
+
+bool Player::isInGame() const
+{
+	return m_isInGame;
 }

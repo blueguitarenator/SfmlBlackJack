@@ -1,6 +1,10 @@
 #include "GameStateCheckBlackJack.h"
 #include "Game.h"
 #include "GameStatePayout.h"
+#include "GameStatePlay.h"
+#include <vector>
+
+using namespace std;
 
 GameStateCheckBlackJack::GameStateCheckBlackJack(Game* game, PokerTable* table)
 	:GameState(game, table)
@@ -12,20 +16,44 @@ GameStateCheckBlackJack::~GameStateCheckBlackJack()
 {
 }
 
+void GameStateCheckBlackJack::doInit()
+{
+	m_nextState = m_play;
+}
+
 void GameStateCheckBlackJack::setPayout(GameStatePayout* payout)
 {
 	m_payout = payout;
 }
 
+void GameStateCheckBlackJack::setPlay(GameStatePlay* play)
+{
+	m_play = play;
+}
+
 GameState* GameStateCheckBlackJack::run()
 {
-	if (m_game->checkDealerBlackJack())
+	Dealer* dealer = m_game->getDealer();
+	if (m_cardCalculator.getCardValue(dealer->getCards()) == 21)
 	{
 		m_nextState = m_payout->init();
 	}
 	else
 	{
-		m_game->checkPlayerBlackJack();
+		vector<Player*> players;
+		dealer->getPlayers(players);
+		for (auto p : players)
+		{
+			int playerValue = m_cardCalculator.getCardValue(p->getMyCards());
+			if (p->getName() == "Three")
+			{
+				playerValue = 21;
+			}
+			if (playerValue == 21)
+			{
+				dealer->payoutBlackjack(p);
+			}
+		}
 		m_game->initFirstPlayer();
 	}
 	return m_nextState->init();

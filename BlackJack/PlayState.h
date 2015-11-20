@@ -1,29 +1,34 @@
 #pragma once
-#include "PlayerBank.h"
+#include "HitDetector.h"
+#include "CardCalculator.h"
+
+class Player;
+class PokerTable;
+class Game;
 
 class PlayState
 {
 public:
-	enum class Play
-	{
-		Hit,
-		Stay,
-		Split,
-		Double,
-		Bust,
-		BlackJack,
-		Unknown
-	};
 
-	PlayState();
+	PlayState(Game* game, PokerTable* table);
 	~PlayState();
-
 	void init();
-	void setState(Play state);
-	void setChoice(PlayerBank& bank, Play choice);
-	Play getChoice() const;
+	virtual void doInit() {}
+	virtual PlayState* execute() = 0;
+	void draw();
+	virtual PlayState* click(int x, int y);
+	const Player* getPlayer() const { return m_player; }
+	void setPlayer(Player* p) { m_player = p; }
+	
+protected:
+	Player* m_player;
+	HitDetector m_hitDetector;
+	PokerTable* m_table;
+	Game* m_game;
+	CardCalculator m_cardCalculator;
 
-private:
-	Play m_state;
+	// operations
+	virtual void doDraw() = 0;
+
 };
 

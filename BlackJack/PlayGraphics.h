@@ -7,7 +7,11 @@ public:
 	PlayGraphics(sf::RenderWindow& window);
 	~PlayGraphics();
 
-	void draw();
+	void drawHit();
+	void drawStay();
+	void drawDouble();
+	void drawSplit();
+
 private:
 	sf::RenderWindow& m_window;
 	sf::RectangleShape m_hitButton;

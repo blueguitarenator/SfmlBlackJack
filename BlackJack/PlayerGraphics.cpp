@@ -57,9 +57,9 @@ void PlayerGraphics::drawCards()
 	}
 }
 
-void PlayerGraphics::drawBetCircle(const Player* currentPlayer)
+void PlayerGraphics::drawBetCircle()
 {
-	if (currentPlayer == &m_player)
+	if (m_player.isActive())
 	{
 		m_betCircle.setOutlineColor(sf::Color::Yellow);
 	}
@@ -78,15 +78,13 @@ void PlayerGraphics::drawBank()
 
 void PlayerGraphics::drawBet()
 {
-	if (m_player.getPlayChoice() == PlayState::Play::Bust)
+	m_betText.setString("$" + to_string(m_player.getBet()));
+
+	if (m_player.getBet() == -1)
 	{
 		m_betText.setString("BUST");
 	}
-	else
-	{
-		m_betText.setString("$" + to_string(m_player.getBet()));
-	}
-	if (m_player.getPlayChoice() == PlayState::Play::BlackJack)
+	if (m_player.getWinnings() > 0)
 	{
 		drawWin();
 	}

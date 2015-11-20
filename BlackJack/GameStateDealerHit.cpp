@@ -14,7 +14,7 @@ GameStateDealerHit::~GameStateDealerHit()
 
 GameState* GameStateDealerHit::run()
 {
-	if (m_game->dealerHitDone())
+	if (!m_game->atLeastOnePlayer() || m_game->dealerHitDone())
 	{
 		return m_nextState->init();
 	}

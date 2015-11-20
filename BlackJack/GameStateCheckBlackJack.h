@@ -2,6 +2,7 @@
 #include "GameState.h"
 
 class GameStatePayout;
+class GameStatePlay;
 
 class GameStateCheckBlackJack : public GameState
 {
@@ -9,13 +10,16 @@ public:
 	GameStateCheckBlackJack(Game* game, PokerTable* table);
 	~GameStateCheckBlackJack();
 
+	void doInit();
 	GameState* run();
 	void setPayout(GameStatePayout* payout);
+	void setPlay(GameStatePlay* play);
 
 private:
 	GameStateCheckBlackJack(const GameStateCheckBlackJack&);                 // Prevent copy-construction
 	GameStateCheckBlackJack& operator=(const GameStateCheckBlackJack&);      // Prevent assignment
 
 	GameStatePayout* m_payout;
+	GameStatePlay* m_play;
 };
 

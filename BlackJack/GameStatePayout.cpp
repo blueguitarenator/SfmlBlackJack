@@ -21,7 +21,10 @@ GameState* GameStatePayout::click(int x, int y)
 
 GameState* GameStatePayout::run()
 {
-	m_game->payout();
+	if (m_game->atLeastOnePlayer())
+	{
+		m_game->payout();
+	}
 	return this;
 }
 

@@ -6,10 +6,10 @@
 #include "Dealer.h"
 #include "Player.h"
 #include "PokerTable.h"
-#include "PlayState.h"
-
+#include "PlayStateFactory.h"
 #include <vector>
 
+class PlayState;
 class GameState;
 
 class Game
@@ -20,22 +20,16 @@ public:
 	~Game();
 
 	void paint(GameState* state);
-	bool placeBetsRoundDone();
-	bool placeBetsPlayerDone();
 	void deal();
-	void checkPlayerBlackJack();
-	bool checkDealerBlackJack();
-	void setPlayerBet(int value);
-	bool playForPlayerDone();
-	bool playForRoundDone();
-	bool playHit();
-	bool playDouble();
-	void setPlayerPlay(PlayState::Play play);
 	void initFirstPlayer();
 	bool dealerHitDone();
 	void payout();
 	void roundOver();
 	PokerTable* getTable();
+	PlayState* initPlayState();
+	PlayState* initBetState();
+	Dealer* getDealer() { return &m_dealer; }
+	bool atLeastOnePlayer() const;
 private:
 	// attributes
 	PokerTable m_pokerTable;
@@ -48,6 +42,11 @@ private:
 	Player m_player3;
 	Player* m_currentPlayer;
 
+	PlayStateFactory m_playStateFactory1;
+	PlayStateFactory m_playStateFactory2;
+	PlayStateFactory m_playStateFactory3;
+
 	// operations
+	void loadShoe();
 };
 

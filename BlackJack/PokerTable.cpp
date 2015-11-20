@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "GameState.h"
 #include "BlackJack.h"
+#include "PlayState.h"
 #include <vector>
 
 using namespace BlackJack;
@@ -44,11 +45,6 @@ void PokerTable::drawChipsDone()
 	m_chipGraphics.drawDone();
 }
 
-void PokerTable::drawPlay()
-{
-	m_playGraphics.draw();
-}
-
 void PokerTable::drawPayout()
 {
 	m_playerGraphics1.drawWin();
@@ -57,12 +53,12 @@ void PokerTable::drawPayout()
 	drawContinueButton();
 }
 
-void PokerTable::drawTable(GameState* state, const Player* currentPlayer)
+void PokerTable::drawTable(GameState* state)
 {
 	m_window.draw(m_feltSprite);
-	m_playerGraphics1.drawBetCircle(currentPlayer);
-	m_playerGraphics2.drawBetCircle(currentPlayer);
-	m_playerGraphics3.drawBetCircle(currentPlayer);
+	m_playerGraphics1.drawBetCircle();
+	m_playerGraphics2.drawBetCircle();
+	m_playerGraphics3.drawBetCircle();
 	m_playerGraphics1.drawBet();
 	m_playerGraphics2.drawBet();
 	m_playerGraphics3.drawBet();
@@ -70,7 +66,6 @@ void PokerTable::drawTable(GameState* state, const Player* currentPlayer)
 	m_playerGraphics2.drawBank();
 	m_playerGraphics3.drawBank();
 	state->draw();
-
 }
 
 void PokerTable::drawContinueButton()

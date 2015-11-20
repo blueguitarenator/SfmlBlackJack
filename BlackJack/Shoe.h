@@ -11,6 +11,8 @@ public:
 	~Shoe();
 
 	void addDeck(const Deck* deck);
+	int getCardsRemaining() const;
+	void clear();
 
 	const Card* draw();
 

@@ -24,14 +24,6 @@ PlayGraphics::~PlayGraphics()
 {
 }
 
-void PlayGraphics::draw()
-{
-	doDraw(m_hitButton, "HIT", HIT_BUTTON_X);
-	doDraw(m_hitButton, "STAY", STAY_BUTTON_X);
-	doDraw(m_hitButton, "DOUBLE", DOUBLE_BUTTON_X);
-	doDraw(m_hitButton, "SPLIT", SPLIT_BUTTON_X);
-}
-
 void PlayGraphics::doDraw(sf::RectangleShape& button, const string& text, float x)
 {
 	m_buttonText.setString(text);
@@ -40,3 +32,24 @@ void PlayGraphics::doDraw(sf::RectangleShape& button, const string& text, float 
 	m_window.draw(m_buttonText);
 	m_window.draw(button);
 }
+
+void PlayGraphics::drawHit()
+{
+	doDraw(m_hitButton, "HIT", HIT_BUTTON_X);
+}
+
+void PlayGraphics::drawStay()
+{
+	doDraw(m_hitButton, "STAY", STAY_BUTTON_X);
+}
+
+void PlayGraphics::drawDouble()
+{
+	doDraw(m_hitButton, "DOUBLE", DOUBLE_BUTTON_X);
+}
+
+void PlayGraphics::drawSplit()
+{
+	doDraw(m_hitButton, "SPLIT", SPLIT_BUTTON_X);
+}
+

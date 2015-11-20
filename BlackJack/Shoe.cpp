@@ -1,15 +1,21 @@
 #include "Shoe.h"
 #include "Deck.h"
+#include "Logger.h"
 
 
 Shoe::Shoe()
 {
-	m_top = -1;
+	LOG_INFO("Creating shoe");
 }
 
 
 Shoe::~Shoe()
 {
+}
+
+int Shoe::getCardsRemaining() const
+{
+	return m_top;
 }
 
 void Shoe::addDeck(const Deck* deck)
@@ -29,6 +35,13 @@ const Card* Shoe::draw()
 	}
 	else
 	{
+		LOG_DEBUG("Out of cards");
 		throw "Out of cards";
 	}
+}
+
+void Shoe::clear()
+{
+	m_shoe.clear();
+	m_top = -1;
 }
