@@ -17,7 +17,6 @@ public:
 	PlayState* execute();
 	void doDraw();
 	PlayState* click(int x, int y);
-	void doInit();
 private:
 	PlayStateHit* m_hit;
 	PlayStateStay* m_stay;

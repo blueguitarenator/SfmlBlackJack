@@ -27,5 +27,6 @@ private:
 	GameStatePlay& operator=(const GameStatePlay&);      // Prevent assignment
 
 	PlayState* m_playState;
+
 };
 

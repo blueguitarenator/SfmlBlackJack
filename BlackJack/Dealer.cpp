@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "GameState.h"
 #include "PlayState.h"
+#include "Logger.h"
 
 using namespace std;
 
@@ -35,16 +36,18 @@ void Dealer::playerBusted(Player* player)
 	player->setBusted();
 }
 
-void Dealer::payout(Player* player, bool blackJack)
+void Dealer::payoutBlackjack(Player* player)
 {
 	int bet = player->getBet();
-	if (blackJack)
-	{
-		float bj = bet * 1.5f;
-		m_bank -= bj;
-		player->setWinnings(bj);
-	}
-	else if (bet > 0)
+	float bj = bet * 1.5f;
+	m_bank -= bj;
+	player->setWinnings(bj);
+}
+
+void Dealer::payout(Player* player)
+{
+	int bet = player->getBet();
+	if (bet > 0)
 	{
 		int playerValue = m_cardCalculator.getCardValue(player->getMyCards());
 		int dealerValue = m_cardCalculator.getCardValue(&m_myCards);

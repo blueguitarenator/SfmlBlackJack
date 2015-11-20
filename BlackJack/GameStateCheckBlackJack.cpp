@@ -45,9 +45,13 @@ GameState* GameStateCheckBlackJack::run()
 		for (auto p : players)
 		{
 			int playerValue = m_cardCalculator.getCardValue(p->getMyCards());
+			if (p->getName() == "Three")
+			{
+				playerValue = 21;
+			}
 			if (playerValue == 21)
 			{
-				dealer->payout(p, true);
+				dealer->payoutBlackjack(p);
 			}
 		}
 		m_game->initFirstPlayer();

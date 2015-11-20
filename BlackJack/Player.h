@@ -11,6 +11,7 @@ public:
 	Player(const std::string& name, Player* nextPlayer);
 	~Player();
 
+	std::string getName() { return m_name; }
 	void pushCard(const Card* card);
 
 	void clearCards();
@@ -34,8 +35,10 @@ public:
 	PlayState* getBetState() const;
 	bool isActive() const { return m_isActive; }
 	void setIsActive(bool isActive) { m_isActive = isActive; }
+	bool isInGame() const;
 private:
 	bool m_isActive;
+	bool m_isInGame;
 	std::vector<const Card*> m_myCards;
 	float m_bank;
 	int m_bet;

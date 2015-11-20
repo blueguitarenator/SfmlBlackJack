@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "GameState.h"
 #include "PlayState.h"
-
+#include "Logger.h"
 #include <iostream>
 #include <string>
 
@@ -19,17 +19,24 @@ Game::Game(sf::RenderWindow& window)
 	m_playStateFactory2(this, &m_pokerTable),
 	m_playStateFactory3(this, &m_pokerTable)
 {
+	loadShoe();
+	m_currentPlayer = nullptr;
+}
+
+Game::~Game()
+{
+}
+
+void Game::loadShoe()
+{
+	LOG_INFO("Loading new shoe");
+	m_shoe.clear();
 	m_shoe.addDeck(&m_deck[0]);
 	m_shoe.addDeck(&m_deck[1]);
 	m_shoe.addDeck(&m_deck[2]);
 	m_shoe.addDeck(&m_deck[3]);
 	m_shoe.addDeck(&m_deck[4]);
 	m_shoe.addDeck(&m_deck[5]);
-	m_currentPlayer = nullptr;
-}
-
-Game::~Game()
-{
 }
 
 PlayState* Game::initBetState()
@@ -87,10 +94,15 @@ void Game::payout()
 
 void doPayout(Player& p, Dealer& dealer)
 {
-	if (p.getBet() > 0)
+	if (p.getBet() > 0 && p.isInGame())
 	{
 		dealer.payout(&p);
 	}
+}
+
+bool Game::atLeastOnePlayer() const
+{
+	return m_player1.isInGame() || m_player2.isInGame() || m_player3.isInGame();
 }
 
 void Game::roundOver()
@@ -99,4 +111,9 @@ void Game::roundOver()
 	m_player1.gameOver();
 	m_player2.gameOver();
 	m_player3.gameOver();
+	int shoeSize = m_shoe.getCardsRemaining();
+	if (shoeSize < 20)
+	{
+		loadShoe();
+	}
 }

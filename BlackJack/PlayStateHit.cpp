@@ -4,13 +4,18 @@
 #include "Game.h"
 
 PlayStateHit::PlayStateHit(Game* game, PokerTable* table)
-	:PlayState(game, table), m_done(false)
+	:PlayState(game, table), m_selected(true)
 {
 }
 
 
 PlayStateHit::~PlayStateHit()
 {
+}
+
+void PlayStateHit::doInit()
+{
+	m_selected = true;
 }
 
 void PlayStateHit::setStay(PlayStateStay* stay)
@@ -25,9 +30,9 @@ void PlayStateHit::setBust(PlayStateBust* bust)
 
 PlayState* PlayStateHit::execute()
 {
-	if (!m_done)
+	if (m_selected)
 	{
-		m_done = true;
+		m_selected = false;
 		Dealer* dealer = m_game->getDealer();
 		
 		dealer->hit(m_player);
@@ -49,9 +54,9 @@ PlayState* PlayStateHit::click(int x, int y)
 {
 	if (m_hitDetector.hitHit(x, y))
 	{
-		m_done = false;
+		m_selected = true;
 	}
-	if (m_hitDetector.hitStay(x, y))
+	else if (m_hitDetector.hitStay(x, y))
 	{
 		return m_stay;
 	}

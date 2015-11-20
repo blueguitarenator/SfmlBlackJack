@@ -15,10 +15,6 @@ PlayStateBegin::~PlayStateBegin()
 {
 }
 
-void PlayStateBegin::doInit()
-{
-}
-
 void PlayStateBegin::setHit(PlayStateHit* hit)
 {
 	m_hit = hit;
@@ -36,6 +32,10 @@ void PlayStateBegin::setDouble(PlayStateDouble* double_)
 
 PlayState* PlayStateBegin::execute()
 {
+	if (!m_player->isInGame())
+	{
+		return m_stay;
+	}
 	return this;
 }
 

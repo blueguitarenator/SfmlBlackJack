@@ -7,7 +7,7 @@ using namespace std;
 using namespace BlackJack;
 
 Player::Player(const std::string& name, Player* player)
-	:m_name(name), m_nextPlayer(player), m_bank(500.0f)
+	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true)
 {
 }
 
@@ -84,12 +84,14 @@ void Player::setPush()
 
 void Player::setBusted()
 {
-	m_bet = 0;
+	m_isInGame = false;
+	m_bet = -1;
 	m_winnings = 0.0f;
 }
 
 void Player::setWinnings(float value)
 {
+	m_isInGame = false;
 	m_winnings = value;
 }
 
@@ -101,7 +103,13 @@ float Player::getWinnings() const
 void Player::gameOver()
 {
 	m_myCards.clear();
-	m_bank += (m_winnings + m_bet);
+	m_bank += (m_winnings + (m_bet > 0 ? m_bet : 0));
 	m_winnings = 0.0f;
 	m_bet = 0;
+	m_isInGame = true;
+}
+
+bool Player::isInGame() const
+{
+	return m_isInGame;
 }

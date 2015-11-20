@@ -29,6 +29,7 @@ public:
 	PlayState* initPlayState();
 	PlayState* initBetState();
 	Dealer* getDealer() { return &m_dealer; }
+	bool atLeastOnePlayer() const;
 private:
 	// attributes
 	PokerTable m_pokerTable;
@@ -46,5 +47,6 @@ private:
 	PlayStateFactory m_playStateFactory3;
 
 	// operations
+	void loadShoe();
 };
 

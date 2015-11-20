@@ -21,7 +21,8 @@ public:
 	const Card* getShowCard() const;
 	void hit(Player* player);
 	bool hitPastSoft17();
-	void payout(Player* player, bool blackJack = false);
+	void payout(Player* player);
+	void payoutBlackjack(Player* player);
 	void gameOver();
 	const Card* getDownCard() const;
 	void getPlayers(std::vector<Player*>& players) const;

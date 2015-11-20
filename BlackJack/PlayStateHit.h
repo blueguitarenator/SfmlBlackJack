@@ -10,6 +10,7 @@ public:
 	PlayStateHit(Game* game, PokerTable* table);
 	~PlayStateHit();
 
+	void doInit();
 	PlayState* execute();
 	void setStay(PlayStateStay* stay);
 	void setBust(PlayStateBust* bust);
@@ -18,7 +19,7 @@ public:
 private:
 	PlayStateStay* m_stay;
 	PlayStateBust* m_bust;
-	bool m_done;
+	bool m_selected;
 
 };
 

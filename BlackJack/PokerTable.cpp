@@ -45,11 +45,6 @@ void PokerTable::drawChipsDone()
 	m_chipGraphics.drawDone();
 }
 
-//void PokerTable::drawPlay()
-//{
-//	m_playGraphics.draw();
-//}
-
 void PokerTable::drawPayout()
 {
 	m_playerGraphics1.drawWin();
@@ -71,7 +66,6 @@ void PokerTable::drawTable(GameState* state)
 	m_playerGraphics2.drawBank();
 	m_playerGraphics3.drawBank();
 	state->draw();
-
 }
 
 void PokerTable::drawContinueButton()
