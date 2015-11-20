@@ -92,18 +92,14 @@ void PokerTable::display()
 void PokerTable::drawDealerCards(GameState* state)
 {
 	vector<const Card*> cards;
-	//Dealer* dealer = const_cast<Dealer*>(&m_dealer);
 	m_dealer.getMyCards(cards, state);
 	float offset = 0.0f;
+
 	for (auto c : cards)
 	{
 		if (c != nullptr)
 		{
 			m_resourceLoader.loadTexture(m_dealerCardTexture, c->getCardGraphic());
-		}
-		else
-		{
-			m_resourceLoader.loadTexture(m_dealerCardTexture, ResourceLoader::CARD_BACK);
 		}
 		m_dealerCardSprite.setTexture(m_dealerCardTexture);
 		m_dealerCardSprite.setScale(.25f, .25f);
@@ -112,21 +108,4 @@ void PokerTable::drawDealerCards(GameState* state)
 		offset += 50.0f;
 	}
 }
-
-/*
-
-
-void PokerTable::drawText()
-{
-	//riesling.ttf
-	//Arcon-Regular.otf
-	if (!m_titleFont.loadFromFile("Arcon-Regular.otf"))
-	{
-		throw "Font not found";
-	}
-	sf::Text text("Black Jack", m_titleFont, 100);
-	text.setPosition(710, 25);
-	m_window->draw(text);
-}
-	*/
 

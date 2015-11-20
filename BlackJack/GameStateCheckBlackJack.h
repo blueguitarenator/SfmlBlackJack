@@ -14,7 +14,7 @@ public:
 	GameState* run();
 	void setPayout(GameStatePayout* payout);
 	void setPlay(GameStatePlay* play);
-
+	void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);
 private:
 	GameStateCheckBlackJack(const GameStateCheckBlackJack&);                 // Prevent copy-construction
 	GameStateCheckBlackJack& operator=(const GameStateCheckBlackJack&);      // Prevent assignment
