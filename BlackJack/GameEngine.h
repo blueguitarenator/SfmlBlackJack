@@ -24,7 +24,6 @@ private:
 	// attributes
 	Game& m_game;
 	GameState* m_state;
-	HitDetector m_hitDetector;
 	
 	GameStateNewGame m_newGame;
 	GameStatePlaceBets m_placeBets;

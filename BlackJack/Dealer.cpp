@@ -31,6 +31,7 @@ void Dealer::getPlayers(vector<Player*>& players) const
 
 void Dealer::playerBusted(Player* player)
 {
+	LOG_DEBUG("Player busted: " << player->getName());
 	int bet = player->getBet();
 	m_bank += bet;
 	player->setBusted();
@@ -38,6 +39,7 @@ void Dealer::playerBusted(Player* player)
 
 void Dealer::payoutBlackjack(Player* player)
 {
+	LOG_DEBUG("BlackJack Player: " << player->getName());
 	int bet = player->getBet();
 	float bj = bet * 1.5f;
 	m_bank -= bj;
@@ -54,15 +56,25 @@ void Dealer::payout(Player* player)
 	
 		if (dealerValue > 21 || playerValue > dealerValue)
 		{
+			if (dealerValue > 21)
+			{
+				LOG_DEBUG("Dealer Bust " << player->getName() << " wins " << bet);
+			}
+			else
+			{
+				LOG_DEBUG("Player beat dealer " << player->getName() << " wins " << bet);
+			}
 			m_bank -= bet;
 			player->setWinnings(bet);
 		}
 		else if (dealerValue == playerValue)
 		{
+			LOG_DEBUG("Push " << player->getName());
 			player->setPush();
 		}
 		else
 		{
+			LOG_DEBUG("Lost to dealer: " << dealerValue << " vs "<< player->getName() << " " << playerValue);
 			m_bank += bet;
 			player->setWinnings(-(bet));
 		}

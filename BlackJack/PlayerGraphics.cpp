@@ -45,10 +45,6 @@ void PlayerGraphics::drawCards()
 		{
 			m_resourceLoader.loadTexture(m_cardTexture, c->getCardGraphic());
 		}
-		else
-		{
-			m_resourceLoader.loadTexture(m_cardTexture, ResourceLoader::CARD_BACK);
-		}
 		m_cardSprite.setTexture(m_cardTexture);
 		m_cardSprite.setScale(.25f, .25f);
 		m_cardSprite.setPosition(sf::Vector2f(150 + offset + m_myOffset, 550));
