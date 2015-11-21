@@ -95,6 +95,7 @@ const std::vector<const Card*>* Player::getMyCards() const
 
 void Player::setPush()
 {
+	m_isInGame = false;
 	m_winnings = 0.0f;
 }
 
