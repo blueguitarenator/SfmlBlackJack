@@ -11,7 +11,7 @@ GameStateGameOver::~GameStateGameOver()
 {
 }
 
-GameState* GameStateGameOver::run()
+GameState* GameStateGameOver::doRun()
 {
 	m_game->roundOver();
 	return m_nextState->init();

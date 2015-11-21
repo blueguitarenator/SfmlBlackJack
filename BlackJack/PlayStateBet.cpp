@@ -18,6 +18,17 @@ void PlayStateBet::doInit()
 	m_done = false;
 }
 
+PlayState* PlayStateBet::doRobotAction()
+{
+	m_player->robotBet();
+	Player* nextPlayer = m_player->getNextPlayer();
+	if (nextPlayer != nullptr)
+	{
+		return m_player->getNextPlayer()->getBetState();
+	}
+	return nullptr;
+}
+
 PlayState* PlayStateBet::click(int x, int y)
 {
 	int value = m_hitDetector.hitChip(x, y);

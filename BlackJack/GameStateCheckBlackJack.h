@@ -11,7 +11,7 @@ public:
 	~GameStateCheckBlackJack();
 
 	void doInit();
-	GameState* run();
+	GameState* doRun();
 	void setPayout(GameStatePayout* payout);
 	void setPlay(GameStatePlay* play);
 	void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);

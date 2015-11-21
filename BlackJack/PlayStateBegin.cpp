@@ -47,6 +47,17 @@ void PlayStateBegin::doDraw()
 	m_table->getPlayGraphics()->drawSplit();
 }
 
+PlayState*PlayStateBegin::doRobotAction()
+{
+	m_player->robotPlay(this);
+	Player* nextPlayer = m_player->getNextPlayer();
+	if (nextPlayer != nullptr)
+	{
+		return m_player->getNextPlayer()->getPlayState();
+	}
+	return nullptr;
+}
+
 PlayState* PlayStateBegin::click(int x, int y)
 {
 	if (m_hitDetector.hitHit(x, y))

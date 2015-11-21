@@ -10,7 +10,7 @@ GameStatePayout::~GameStatePayout()
 {
 }
 
-GameState* GameStatePayout::click(int x, int y)
+GameState* GameStatePayout::doClick(int x, int y)
 {
 	if (m_hitDetector.hitContinue(x, y))
 	{
@@ -19,7 +19,7 @@ GameState* GameStatePayout::click(int x, int y)
 	return this;
 }
 
-GameState* GameStatePayout::run()
+GameState* GameStatePayout::doRun()
 {
 	if (m_game->atLeastOnePlayer())
 	{

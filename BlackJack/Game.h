@@ -5,6 +5,7 @@
 #include "Shoe.h"
 #include "Dealer.h"
 #include "Player.h"
+#include "Robot.h"
 #include "PokerTable.h"
 #include "PlayStateFactory.h"
 #include <vector>
@@ -30,6 +31,7 @@ public:
 	PlayState* initBetState();
 	Dealer* getDealer() { return &m_dealer; }
 	bool atLeastOnePlayer() const;
+	Player* getActivePlayer();
 private:
 	// attributes
 	PokerTable m_pokerTable;
@@ -40,6 +42,9 @@ private:
 	Player m_player1;
 	Player m_player2;
 	Player m_player3;
+	Robot m_robot1;
+	Robot m_robot2;
+	Robot m_robot3;
 	Player* m_currentPlayer;
 
 	PlayStateFactory m_playStateFactory1;

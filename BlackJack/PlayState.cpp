@@ -13,6 +13,11 @@ PlayState::~PlayState()
 {
 }
 
+PlayState* PlayState::robotAction()
+{
+	return doRobotAction();
+}
+
 void PlayState::draw()
 {
 	doDraw();

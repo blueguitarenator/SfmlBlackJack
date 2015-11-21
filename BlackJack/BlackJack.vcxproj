@@ -156,6 +156,7 @@
     <ClCompile Include="PlayStateStay.cpp" />
     <ClCompile Include="PokerTable.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Shoe.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <ClInclude Include="PlayStateStay.h" />
     <ClInclude Include="PokerTable.h" />
     <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Shoe.h" />
   </ItemGroup>
   <ItemGroup>

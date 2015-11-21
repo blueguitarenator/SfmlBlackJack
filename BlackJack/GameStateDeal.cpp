@@ -12,7 +12,7 @@ GameStateDeal::~GameStateDeal()
 {
 }
 
-GameState* GameStateDeal::run()
+GameState* GameStateDeal::doRun()
 {
 	m_game->deal();
 	return m_nextState->init();
