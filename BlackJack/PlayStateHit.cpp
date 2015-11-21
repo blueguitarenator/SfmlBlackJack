@@ -18,6 +18,11 @@ void PlayStateHit::doInit()
 	m_selected = true;
 }
 
+PlayState*PlayStateHit::doRobotAction()
+{
+	return m_player->robotPlay(this, m_game->getDealer()->getShowCard());
+}
+
 void PlayStateHit::setStay(PlayStateStay* stay)
 {
 	m_stay = stay;

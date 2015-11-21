@@ -39,7 +39,7 @@ public:
 	bool isInGame() const;
 	bool isRobot() const;
 	void robotBet();
-	PlayState* robotPlay(PlayState* play);
+	PlayState* robotPlay(PlayState* play, const Card* dealerCard);
 private:
 	bool m_isActive;
 	bool m_isInGame;

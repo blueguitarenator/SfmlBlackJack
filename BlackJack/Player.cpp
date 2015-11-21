@@ -27,9 +27,9 @@ void Player::robotBet()
 	m_robot->makeBet(this);
 }
 
-PlayState* Player::robotPlay(PlayState* play)
+PlayState* Player::robotPlay(PlayState* play, const Card* dealerCard)
 {
-	return m_robot->play(play);
+	return m_robot->play(play, dealerCard);
 }
 
 void Player::incrementBet(int value)

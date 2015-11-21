@@ -4,6 +4,7 @@
 #include "PlayStateDouble.h"
 #include "PokerTable.h"
 #include "Player.h"
+#include "Game.h"
 
 PlayStateBegin::PlayStateBegin(Game* game, PokerTable* table)
 	:PlayState(game, table)
@@ -49,13 +50,7 @@ void PlayStateBegin::doDraw()
 
 PlayState*PlayStateBegin::doRobotAction()
 {
-	m_player->robotPlay(this);
-	Player* nextPlayer = m_player->getNextPlayer();
-	if (nextPlayer != nullptr)
-	{
-		return m_player->getNextPlayer()->getPlayState();
-	}
-	return nullptr;
+	return m_player->robotPlay(this, m_game->getDealer()->getShowCard());
 }
 
 PlayState* PlayStateBegin::click(int x, int y)

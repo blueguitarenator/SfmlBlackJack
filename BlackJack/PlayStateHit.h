@@ -16,6 +16,7 @@ public:
 	void setBust(PlayStateBust* bust);
 	void doDraw();
 	PlayState* click(int x, int y);
+	PlayState* doRobotAction();
 private:
 	PlayStateStay* m_stay;
 	PlayStateBust* m_bust;
