@@ -51,8 +51,8 @@ PlayState* PlayStateHit::execute()
 
 void PlayStateHit::doDraw()
 {
-	m_table->getPlayGraphics()->drawHit();
-	m_table->getPlayGraphics()->drawStay();
+	m_table->getPlayGraphics()->drawHit(true);
+	m_table->getPlayGraphics()->drawStay(false);
 }
 
 PlayState* PlayStateHit::click(int x, int y)

@@ -1,6 +1,6 @@
 #include "PlayStateStay.h"
 #include "Player.h"
-
+#include "PokerTable.h"
 
 PlayStateStay::PlayStateStay(Game* game, PokerTable* table)
 	:PlayState(game, table)
@@ -27,5 +27,6 @@ PlayState* PlayStateStay::execute()
 
 void PlayStateStay::doDraw()
 {
-
+	m_table->getPlayGraphics()->drawHit(false);
+	m_table->getPlayGraphics()->drawStay(true);
 }

@@ -5,6 +5,9 @@
 #include "PokerTable.h"
 #include "Player.h"
 #include "Game.h"
+#include <vector>
+
+using namespace std;
 
 PlayStateBegin::PlayStateBegin(Game* game, PokerTable* table)
 	:PlayState(game, table)
@@ -42,10 +45,14 @@ PlayState* PlayStateBegin::execute()
 
 void PlayStateBegin::doDraw()
 {
-	m_table->getPlayGraphics()->drawHit();
-	m_table->getPlayGraphics()->drawStay();
-	m_table->getPlayGraphics()->drawDouble();
-	m_table->getPlayGraphics()->drawSplit();
+	m_table->getPlayGraphics()->drawHit(false);
+	m_table->getPlayGraphics()->drawStay(false);
+	m_table->getPlayGraphics()->drawDouble(false);
+	const vector<const Card*>* cards = m_player->getMyCards();
+	if (cards->at(0)->getRank() == cards->at(1)->getRank())
+	{
+		m_table->getPlayGraphics()->drawSplit(false);
+	}
 }
 
 PlayState*PlayStateBegin::doRobotAction()
