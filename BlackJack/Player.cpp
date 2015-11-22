@@ -1,19 +1,35 @@
 #include "Player.h"
 #include "BlackJack.h"
 #include "PlayState.h"
+#include "Robot.h"
 #include <iostream>
 
 using namespace std;
 using namespace BlackJack;
 
-Player::Player(const std::string& name, Player* player)
-	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true)
+Player::Player(const std::string& name, Player* player, Robot* robot)
+	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true), m_robot(robot)
 {
 }
 
 
 Player::~Player()
 {
+}
+
+bool Player::isRobot() const
+{
+	return m_robot != nullptr;
+}
+
+void Player::robotBet()
+{
+	m_robot->makeBet(this);
+}
+
+PlayState* Player::robotPlay(PlayState* play, const Card* dealerCard)
+{
+	return m_robot->play(play, dealerCard);
 }
 
 void Player::incrementBet(int value)
@@ -79,6 +95,7 @@ const std::vector<const Card*>* Player::getMyCards() const
 
 void Player::setPush()
 {
+	m_isInGame = false;
 	m_winnings = 0.0f;
 }
 

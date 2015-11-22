@@ -10,8 +10,9 @@ public:
 	~GameStatePlaceBets();
 
 	void doInit();
-	GameState* run();
-	GameState* click(int x, int y);
+	GameState* doRun();
+	GameState* doClick(int x, int y);
+	GameState* doRobot();
 	void draw();
 private:
 	GameStatePlaceBets(const GameStatePlaceBets&);                 // Prevent copy-construction

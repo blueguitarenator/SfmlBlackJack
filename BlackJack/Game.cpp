@@ -11,9 +11,9 @@ void doPayout(Player& p, Dealer& dealer);
 
 Game::Game(sf::RenderWindow& window)
 	:m_pokerTable(window, m_player1, m_player2, m_player3, m_dealer),
-	m_player1("One", &m_player2),
-	m_player2("Two", &m_player3),
-	m_player3("Three", nullptr),
+	m_player1("One", &m_player2, &m_robot1),
+	m_player2("Two", &m_player3, &m_robot2),
+	m_player3("Three", nullptr, &m_robot3),
 	m_dealer(&m_shoe, &m_player1, &m_player2, &m_player3),
 	m_playStateFactory1(this, &m_pokerTable),
 	m_playStateFactory2(this, &m_pokerTable),
@@ -25,6 +25,23 @@ Game::Game(sf::RenderWindow& window)
 
 Game::~Game()
 {
+}
+
+Player* Game::getActivePlayer()
+{
+	if (m_player1.isActive())
+	{
+		return &m_player1;
+	}
+	else if (m_player2.isActive())
+	{
+		return &m_player2;
+	}
+	else if (m_player3.isActive())
+	{
+		return &m_player3;
+	}
+	return nullptr;
 }
 
 void Game::loadShoe()

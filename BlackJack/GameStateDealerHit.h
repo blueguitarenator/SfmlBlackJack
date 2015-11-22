@@ -7,7 +7,7 @@ public:
 	GameStateDealerHit(Game* game, PokerTable* table);
 	~GameStateDealerHit();
 
-	GameState* run();
+	GameState* doRun();
 
 private:
 	GameStateDealerHit(const GameStateDealerHit&);                 // Prevent copy-construction

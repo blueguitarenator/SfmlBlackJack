@@ -7,7 +7,7 @@ public:
 	GameStateDeal(Game* game, PokerTable* table);
 	~GameStateDeal();
 
-	GameState* run();
+	GameState* doRun();
 	void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);
 private:
 	GameStateDeal(const GameStateDeal&);                 // Prevent copy-construction

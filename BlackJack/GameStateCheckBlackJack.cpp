@@ -31,7 +31,7 @@ void GameStateCheckBlackJack::setPlay(GameStatePlay* play)
 	m_play = play;
 }
 
-GameState* GameStateCheckBlackJack::run()
+GameState* GameStateCheckBlackJack::doRun()
 {
 	Dealer* dealer = m_game->getDealer();
 	if (m_cardCalculator.getCardValue(dealer->getCards()) == 21)

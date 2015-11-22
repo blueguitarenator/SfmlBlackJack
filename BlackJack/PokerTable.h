@@ -45,6 +45,7 @@ private:
 
 	sf::RectangleShape m_continueButton;
 	sf::Text m_continueText;
+	sf::Text m_dealerBank;
 
 	// operations
 	void drawDealerCards(GameState* state);

@@ -14,17 +14,20 @@ public:
 	GameState(Game* game, PokerTable* table);
 	virtual ~GameState();
 
-	GameState* doRun();
-	GameState* doClick(int x, int y);
-	virtual GameState* run() = 0;
+	GameState* init();
+	virtual void doInit() {}
+
+	GameState* run();
+	virtual GameState* doRun() = 0;
+
+	GameState* click(int x, int y);
+	virtual GameState* doClick(int x, int y);
 	
-	virtual GameState* click(int x, int y);
 	virtual void draw();
 	virtual void getDealerCards(std::vector<const Card*>& cards, const Dealer* dealer);
 
-	GameState* init();
-	virtual void doInit() {}
 	void setNextState(GameState* nextState);
+	virtual GameState* doRobot() { return this; }
 protected:
 	PokerTable* m_table;
 	Game* m_game;

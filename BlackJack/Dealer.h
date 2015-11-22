@@ -27,6 +27,7 @@ public:
 	const Card* getDownCard() const;
 	void getPlayers(std::vector<Player*>& players) const;
 	void playerBusted(Player* player);
+	int getBank() const { return m_bank; }
 private:
 	// attributes
 	int m_bank;

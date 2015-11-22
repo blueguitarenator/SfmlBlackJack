@@ -10,7 +10,7 @@ GameStateNewGame::~GameStateNewGame()
 {
 }
 
-GameState* GameStateNewGame::run()
+GameState* GameStateNewGame::doRun()
 {
 	m_game->initFirstPlayer();
 	return m_nextState->init();

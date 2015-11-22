@@ -11,6 +11,7 @@ public:
 	void doDraw();
 	PlayState* execute();
 	PlayState* click(int x, int y);
+	PlayState* doRobotAction();
 private:
 	bool m_done;
 };

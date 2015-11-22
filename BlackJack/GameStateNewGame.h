@@ -7,7 +7,7 @@ public:
 	GameStateNewGame(Game* game, PokerTable* table);
 	~GameStateNewGame();
 
-	GameState* run();
+	GameState* doRun();
 
 private:
 	GameStateNewGame(const GameStateNewGame&);                 // Prevent copy-construction

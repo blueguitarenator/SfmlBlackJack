@@ -107,5 +107,12 @@ void PokerTable::drawDealerCards(GameState* state)
 		m_window.draw(m_dealerCardSprite);
 		offset += 50.0f;
 	}
+
+	m_dealerBank.setFont(m_titleFont);
+	m_dealerBank.setCharacterSize(20);
+	m_dealerBank.setPosition(sf::Vector2f(810, 50));
+	m_dealerBank.setString(to_string(m_dealer.getBank()));
+	m_window.draw(m_dealerBank);
+
 }
 

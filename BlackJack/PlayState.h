@@ -12,9 +12,15 @@ public:
 
 	PlayState(Game* game, PokerTable* table);
 	~PlayState();
+
 	void init();
 	virtual void doInit() {}
+
 	virtual PlayState* execute() = 0;
+	
+	PlayState* robotAction();
+	virtual PlayState* doRobotAction() { return this; };
+
 	void draw();
 	virtual PlayState* click(int x, int y);
 	const Player* getPlayer() const { return m_player; }

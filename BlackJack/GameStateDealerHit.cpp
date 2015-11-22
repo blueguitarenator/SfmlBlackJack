@@ -12,7 +12,7 @@ GameStateDealerHit::~GameStateDealerHit()
 {
 }
 
-GameState* GameStateDealerHit::run()
+GameState* GameStateDealerHit::doRun()
 {
 	if (!m_game->atLeastOnePlayer() || m_game->dealerHitDone())
 	{

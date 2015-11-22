@@ -7,8 +7,8 @@ public:
 	GameStatePayout(Game* game, PokerTable* table);
 	~GameStatePayout();
 
-	GameState* run();
-	GameState* click(int x, int y);
+	GameState* doRun();
+	GameState* doClick(int x, int y);
 	void draw();
 private:
 	GameStatePayout(const GameStatePayout&);                 // Prevent copy-construction

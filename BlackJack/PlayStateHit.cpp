@@ -18,6 +18,11 @@ void PlayStateHit::doInit()
 	m_selected = true;
 }
 
+PlayState*PlayStateHit::doRobotAction()
+{
+	return m_player->robotPlay(this, m_game->getDealer()->getShowCard());
+}
+
 void PlayStateHit::setStay(PlayStateStay* stay)
 {
 	m_stay = stay;
@@ -46,8 +51,9 @@ PlayState* PlayStateHit::execute()
 
 void PlayStateHit::doDraw()
 {
-	m_table->getPlayGraphics()->drawHit();
-	m_table->getPlayGraphics()->drawStay();
+	m_table->getPlayGraphics()->drawHit(true);
+	m_table->getPlayGraphics()->drawStay(false);
+	m_table->getPlayGraphics()->drawDouble(false);
 }
 
 PlayState* PlayStateHit::click(int x, int y)

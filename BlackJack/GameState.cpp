@@ -16,16 +16,21 @@ GameState::~GameState()
 {
 }
 
-GameState* GameState::doRun()
+GameState* GameState::run()
 {
-	GameState* state = run();
+	GameState* state = doRun();
+	Player* activePlayer = m_game->getActivePlayer();
+	if (activePlayer != nullptr && activePlayer->isRobot())
+	{
+		doRobot();
+	}
 	m_game->paint(this);
 	return state;
 }
 
-GameState* GameState::doClick(int x, int y)
+GameState* GameState::click(int x, int y)
 {
-	GameState* state = click(x, y);
+	GameState* state = doClick(x, y);
 	m_game->paint(this);
 	return state;
 }
@@ -51,7 +56,7 @@ void GameState::getDealerCards(std::vector<const Card*>& cards, const Dealer* de
 	}
 }
 
-GameState* GameState::click(int x, int y)
+GameState* GameState::doClick(int x, int y)
 {
 	return this;
 }

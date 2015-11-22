@@ -4,11 +4,12 @@
 
 class Card;
 class PlayState;
+class Robot;
 
 class Player
 {
 public:
-	Player(const std::string& name, Player* nextPlayer);
+	Player(const std::string& name, Player* nextPlayer, Robot* robot);
 	~Player();
 
 	std::string getName() { return m_name; }
@@ -36,6 +37,9 @@ public:
 	bool isActive() const { return m_isActive; }
 	void setIsActive(bool isActive) { m_isActive = isActive; }
 	bool isInGame() const;
+	bool isRobot() const;
+	void robotBet();
+	PlayState* robotPlay(PlayState* play, const Card* dealerCard);
 private:
 	bool m_isActive;
 	bool m_isInGame;
@@ -47,5 +51,6 @@ private:
 	Player* m_nextPlayer;
 	PlayState* m_playState;
 	PlayState* m_betState;
+	Robot* m_robot;
 };
 

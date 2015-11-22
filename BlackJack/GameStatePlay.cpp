@@ -19,15 +19,24 @@ void GameStatePlay::doInit()
 	m_playState = m_game->initPlayState();
 }
 
-GameState* GameStatePlay::click(int x, int y)
+GameState* GameStatePlay::doClick(int x, int y)
 {
 	m_playState = m_playState->click(x, y);
 	return this;
 }
 
-GameState* GameStatePlay::run()
+GameState* GameStatePlay::doRobot()
 {
-	m_playState = m_playState->execute();
+	m_playState = m_playState->robotAction();
+	return this;
+}
+
+GameState* GameStatePlay::doRun()
+{
+	if (m_playState != nullptr)
+	{
+		m_playState = m_playState->execute();
+	}
 	if (m_playState == nullptr)
 	{
 		return m_nextState->init();

@@ -10,7 +10,7 @@ public:
 	~PlayStateDouble();
 
 	PlayState* execute();
-	void doDraw() {}
+	void doDraw();
 	void setStay(PlayStateStay* stay);
 private:
 	PlayStateStay* m_stay;

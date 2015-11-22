@@ -33,7 +33,7 @@ void GameEngine::mouseClick(int x, int y)
 
 void GameEngine::handlePollEvent()
 {
-	m_state = m_state->doRun();
+	m_state = m_state->run();
 }
 
 void GameEngine::buildGameState()
