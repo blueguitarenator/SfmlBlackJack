@@ -7,7 +7,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1400, 1000), "Black Jack");
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
 	
 	Game game(window);
 	GameEngine engine(game);

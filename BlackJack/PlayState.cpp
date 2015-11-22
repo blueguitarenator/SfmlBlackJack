@@ -19,9 +19,9 @@ PlayState::~PlayState()
 
 PlayState* PlayState::robotAction()
 {
-	this_thread::sleep_for(chrono::milliseconds(1000));
+	//this_thread::sleep_for(chrono::milliseconds(1000));
 	PlayState* playState = doRobotAction();
-	this_thread::sleep_for(chrono::milliseconds(1000));
+	//this_thread::sleep_for(chrono::milliseconds(1000));
 	return playState;
 }
 

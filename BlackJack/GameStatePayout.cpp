@@ -25,7 +25,7 @@ GameState* GameStatePayout::doRun()
 	{
 		m_game->payout();
 	}
-	return this;
+	return m_nextState->init();// this;
 }
 
 void GameStatePayout::draw()
