@@ -51,7 +51,6 @@ GameState* GameStateCheckBlackJack::doRun()
 				dealer->payoutBlackjack(p);
 			}
 		}
-		m_game->initFirstPlayer();
 	}
 	return m_nextState->init();
 }

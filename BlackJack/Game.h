@@ -22,7 +22,6 @@ public:
 
 	void paint(GameState* state);
 	void deal();
-	void initFirstPlayer();
 	bool dealerHitDone();
 	void payout();
 	void roundOver();
@@ -40,16 +39,21 @@ private:
 	
 	Dealer m_dealer;
 	Player m_player1;
+	Player m_splitPlayer1;
 	Player m_player2;
+	Player m_splitPlayer2;
 	Player m_player3;
+	Player m_splitPlayer3;
 	Robot m_robot1;
 	Robot m_robot2;
 	Robot m_robot3;
-	Player* m_currentPlayer;
 
 	PlayStateFactory m_playStateFactory1;
 	PlayStateFactory m_playStateFactory2;
 	PlayStateFactory m_playStateFactory3;
+	PlayStateFactory m_playStateFactory1s;
+	PlayStateFactory m_playStateFactory2s;
+	PlayStateFactory m_playStateFactory3s;
 
 	// operations
 	void loadShoe();

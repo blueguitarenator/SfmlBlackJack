@@ -11,16 +11,24 @@ void doPayout(Player& p, Dealer& dealer);
 
 Game::Game(sf::RenderWindow& window)
 	:m_pokerTable(window, m_player1, m_player2, m_player3, m_dealer),
-	m_player1("One", &m_player2, &m_robot1),
+	m_player1("One", &m_player2, nullptr),
+	m_splitPlayer1("OneSplit", &m_player2, nullptr),
 	m_player2("Two", &m_player3, &m_robot2),
+	m_splitPlayer2("TwoSplit", &m_player3, &m_robot2),
 	m_player3("Three", nullptr, &m_robot3),
+	m_splitPlayer3("ThreeSplit", nullptr, &m_robot3),
 	m_dealer(&m_shoe, &m_player1, &m_player2, &m_player3),
 	m_playStateFactory1(this, &m_pokerTable),
 	m_playStateFactory2(this, &m_pokerTable),
-	m_playStateFactory3(this, &m_pokerTable)
+	m_playStateFactory3(this, &m_pokerTable),
+	m_playStateFactory1s(this, &m_pokerTable),
+	m_playStateFactory2s(this, &m_pokerTable),
+	m_playStateFactory3s(this, &m_pokerTable)
 {
 	loadShoe();
-	m_currentPlayer = nullptr;
+	m_player1.setSplit(&m_splitPlayer1);
+	m_player2.setSplit(&m_splitPlayer2);
+	m_player3.setSplit(&m_splitPlayer3);
 }
 
 Game::~Game()
@@ -67,9 +75,12 @@ PlayState* Game::initBetState()
 
 PlayState* Game::initPlayState()
 {
-	m_playStateFactory1.createPlayState(&m_player1);
-	m_playStateFactory2.createPlayState(&m_player2);
-	m_playStateFactory3.createPlayState(&m_player3);
+	m_playStateFactory1.resetPlayState(&m_player1);
+	m_playStateFactory1s.resetPlayState(&m_splitPlayer1);
+	m_playStateFactory2.resetPlayState(&m_player2);
+	m_playStateFactory2s.resetPlayState(&m_splitPlayer2);
+	m_playStateFactory3.resetPlayState(&m_player3);
+	m_playStateFactory3s.resetPlayState(&m_splitPlayer3);
 	m_player1.setIsActive(true);
 
 	return m_player1.getPlayState();
@@ -83,11 +94,6 @@ PokerTable* Game::getTable()
 bool Game::dealerHitDone()
 {
 	return m_dealer.hitPastSoft17();
-}
-
-void Game::initFirstPlayer()
-{
-	m_currentPlayer = &m_player1;
 }
 
 void Game::paint(GameState* state)

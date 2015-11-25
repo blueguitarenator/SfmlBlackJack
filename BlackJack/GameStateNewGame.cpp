@@ -12,6 +12,5 @@ GameStateNewGame::~GameStateNewGame()
 
 GameState* GameStateNewGame::doRun()
 {
-	m_game->initFirstPlayer();
 	return m_nextState->init();
 }

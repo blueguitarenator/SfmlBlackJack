@@ -153,6 +153,7 @@
     <ClCompile Include="PlayStateDouble.cpp" />
     <ClCompile Include="PlayStateFactory.cpp" />
     <ClCompile Include="PlayStateHit.cpp" />
+    <ClCompile Include="PlayStateSplit.cpp" />
     <ClCompile Include="PlayStateStay.cpp" />
     <ClCompile Include="PokerTable.cpp" />
     <ClCompile Include="ResourceLoader.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="PlayStateDouble.h" />
     <ClInclude Include="PlayStateFactory.h" />
     <ClInclude Include="PlayStateHit.h" />
+    <ClInclude Include="PlayStateSplit.h" />
     <ClInclude Include="PlayStateStay.h" />
     <ClInclude Include="PokerTable.h" />
     <ClInclude Include="ResourceLoader.h" />

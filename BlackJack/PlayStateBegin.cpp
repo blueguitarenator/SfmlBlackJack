@@ -19,6 +19,11 @@ PlayStateBegin::~PlayStateBegin()
 {
 }
 
+void PlayStateBegin::setSplit(PlayStateSplit* split)
+{
+	m_split = split;
+}
+
 void PlayStateBegin::setHit(PlayStateHit* hit)
 {
 	m_hit = hit;
@@ -49,7 +54,7 @@ void PlayStateBegin::doDraw()
 	m_table->getPlayGraphics()->drawStay(false);
 	m_table->getPlayGraphics()->drawDouble(false);
 	const vector<const Card*>* cards = m_player->getMyCards();
-	if (cards->at(0)->getRank() == cards->at(1)->getRank())
+	if (cards->at(0)->getRank() != cards->at(1)->getRank())
 	{
 		m_table->getPlayGraphics()->drawSplit(false);
 	}
@@ -73,6 +78,10 @@ PlayState* PlayStateBegin::click(int x, int y)
 	else if (m_hitDetector.hitDouble(x, y))
 	{
 		return m_double;
+	}
+	else if (m_hitDetector.hitSplit(x, y))
+	{
+		return m_split;
 	}
 	return this;
 }

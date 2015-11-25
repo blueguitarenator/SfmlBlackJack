@@ -59,7 +59,8 @@ bool HitDetector::hitDouble(int x, int y) const
 }
 bool HitDetector::hitSplit(int x, int y) const
 {
-	return false;
+	return x > SPLIT_BUTTON_X && x < SPLIT_BUTTON_X + BUTTON_WIDTH &&
+		y > BUTTON_Y && y < BUTTON_Y + BUTTON_HEIGHT;
 }
 
 bool HitDetector::hitContinue(int x, int y) const

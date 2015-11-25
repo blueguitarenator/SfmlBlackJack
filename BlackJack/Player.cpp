@@ -8,13 +8,30 @@ using namespace std;
 using namespace BlackJack;
 
 Player::Player(const std::string& name, Player* player, Robot* robot)
-	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true), m_robot(robot)
+	:m_name(name), m_nextPlayer(player), m_bank(500.0f), m_isInGame(true), m_robot(robot), m_isSplit(false)
 {
 }
 
 
 Player::~Player()
 {
+}
+
+Player* Player::split()
+{
+	// cards
+	const Card* card = m_myCards.at(0);
+	m_split->pushCard(m_myCards.at(1));
+	m_myCards.clear();
+	m_myCards.push_back(card);
+
+	// bet
+	m_bank -= m_bet;
+	m_split->incrementBet(m_bet);
+
+	m_isSplit = true;
+	m_nextPlayer = m_split;
+	return m_split;
 }
 
 bool Player::isRobot() const
@@ -124,6 +141,15 @@ void Player::gameOver()
 	m_winnings = 0.0f;
 	m_bet = 0;
 	m_isInGame = true;
+
+	if (m_isSplit)
+	{
+		m_isSplit = false;
+		m_nextPlayer = m_split->getNextPlayer();
+		int bet = m_split->getBet();
+		m_bank += m_split->getWinnings() + (bet > 0 ? bet : 0);
+		m_split->gameOver();
+	}
 }
 
 bool Player::isInGame() const

@@ -36,13 +36,18 @@ public:
 	PlayState* getBetState() const;
 	bool isActive() const { return m_isActive; }
 	void setIsActive(bool isActive) { m_isActive = isActive; }
+	bool isSplit() const { return m_isSplit; }
 	bool isInGame() const;
 	bool isRobot() const;
 	void robotBet();
 	PlayState* robotPlay(PlayState* play, const Card* dealerCard);
+	Player* split();
+	void setSplit(Player* split) { m_split = split; }
+	Player* getSplitPlayer() const { return m_split; }
 private:
 	bool m_isActive;
 	bool m_isInGame;
+	bool m_isSplit;
 	std::vector<const Card*> m_myCards;
 	float m_bank;
 	int m_bet;
@@ -52,5 +57,6 @@ private:
 	PlayState* m_playState;
 	PlayState* m_betState;
 	Robot* m_robot;
+	Player* m_split;
 };
 

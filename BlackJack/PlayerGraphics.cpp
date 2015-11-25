@@ -37,8 +37,21 @@ PlayerGraphics::~PlayerGraphics()
 
 void PlayerGraphics::drawCards()
 {
+	if (m_player.isSplit())
+	{
+		doDrawCards(100, m_myOffset, &m_player);
+		doDrawCards(300, m_myOffset, m_player.getSplitPlayer());
+	}
+	else
+	{
+		doDrawCards(150, m_myOffset, &m_player);
+	}
+}
+
+void PlayerGraphics::doDrawCards(int leftOffset, int myPositionOffset, const Player* p)
+{
 	float offset = 0.0f;
-	const vector<const Card*>* cards = m_player.getMyCards();
+	const vector<const Card*>* cards = p->getMyCards();
 	for (auto c : *cards)
 	{
 		if (c != nullptr)
@@ -47,7 +60,7 @@ void PlayerGraphics::drawCards()
 		}
 		m_cardSprite.setTexture(m_cardTexture);
 		m_cardSprite.setScale(.25f, .25f);
-		m_cardSprite.setPosition(sf::Vector2f(150 + offset + m_myOffset, 550));
+		m_cardSprite.setPosition(sf::Vector2f(leftOffset + offset + myPositionOffset, 550));
 		m_window.draw(m_cardSprite);
 		offset += 50.0f;
 	}

@@ -16,6 +16,7 @@ public:
 	void drawWin();
 	void drawCards();
 private:
+	// attributes
 	float m_myOffset;
 	ResourceLoader m_resourceLoader;
 	const Player& m_player;
@@ -27,5 +28,8 @@ private:
 	sf::Text m_winText;
 	sf::Texture m_cardTexture;
 	sf::Sprite m_cardSprite;
+
+	// operations
+	void doDrawCards(int leftOffset, int myPositionOffset, const Player* p);
 };
 
